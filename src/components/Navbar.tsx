@@ -44,7 +44,7 @@ export default function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors dark:text-gray-300 dark:hover:text-primary"
+                  className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   {item.name}
                 </Link>
@@ -66,7 +66,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary dark:text-gray-300"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
             >
               <span className="sr-only">Open main menu</span>
               {isMobileMenuOpen ? (
@@ -109,13 +109,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 w-full bg-white/90 backdrop-blur-xl border-b border-gray-200 dark:bg-black/90 dark:border-gray-800 shadow-lg animate-in slide-in-from-top-5 duration-200">
+        <div className="md:hidden absolute top-16 left-0 w-full bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-lg animate-in slide-in-from-top-5 duration-200">
           <div className="px-4 pt-2 pb-6 space-y-2">
             {navLinks.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block text-gray-700 hover:text-primary px-3 py-2 rounded-md text-base font-medium transition-colors dark:text-gray-300 dark:hover:text-primary"
+                className="block text-gray-700 hover:text-primary px-3 py-2 rounded-md text-base font-medium transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}

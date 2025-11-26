@@ -9,7 +9,7 @@ import NewsletterSection from "@/components/NewsletterSection";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black font-sans text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-white font-sans text-gray-900">
       <Navbar />
 
       <main>

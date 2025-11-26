@@ -7,35 +7,21 @@ export default function Hero() {
   return (
     <section className="relative pt-20 pb-20 lg:pb-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h5 className="text-xs md:text-lg text-gray-500 dark:text-gray-400 flex items-center justify-center">
+        <h5 className="text-xs md:text-lg text-gray-500 flex items-center justify-center">
           <Dot className="text-green-500 h-12 w-12" /> 24/7 availability, 40%
           cost savings, multilingual reach
         </h5>
-        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-6">
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
           <span className="block">Powering World-Class Customer</span>
           <span>Support for </span>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">
             Global Businesses
           </span>
         </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-xs md:text-lg text-gray-500 dark:text-gray-400 mb-10">
+        <p className="mt-4 max-w-2xl mx-auto text-xs md:text-lg text-gray-500 mb-10">
           Where technology, talent, and 24/7 operations come together to power
           exceptional service.
         </p>
-        {/* <div className="flex justify-center gap-4 mb-16">
-          <Link
-            href="#"
-            className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full text-lg font-medium transition-all shadow-lg shadow-primary/30 hover:shadow-primary/50"
-          >
-            Get Started
-          </Link>
-          <Link
-            href="#"
-            className="bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 px-8 py-3 rounded-full text-lg font-medium transition-colors dark:bg-gray-900 dark:text-white dark:border-gray-700 dark:hover:bg-gray-800"
-          >
-            Learn More
-          </Link>
-        </div> */}
 
         <section className="w-full pt-16 px-4 flex justify-center items-center">
           <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-[60%_40%] gap-8 lg:gap-6 items-center">
