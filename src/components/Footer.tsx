@@ -74,7 +74,13 @@ const Footer = () => {
                 (item) => (
                   <li key={item}>
                     <Link
-                      href={item === "Contact Us" ? "/contact" : "#"}
+                      href={
+                        item === "Contact Us"
+                          ? "/contact"
+                          : item === "About Us"
+                          ? "/about"
+                          : "#"
+                      }
                       className="text-gray-600 hover:text-[#594ad2] transition-colors font-medium text-[15px]"
                     >
                       {item}

@@ -65,7 +65,7 @@ const AccordionItem = ({ question, answer, isOpen, onClick }:{
 // 3. Main FAQ Section Component
 const FAQSection = () => {
   // State to track which active index is open. 0 means the first one is open by default.
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   const handleToggle = (index:number) => {
     if(activeIndex === index){
