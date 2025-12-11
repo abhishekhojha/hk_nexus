@@ -50,9 +50,9 @@ export default function CareersPage() {
       return;
     }
 
-    // Validate file size (10MB)
-    if (file.size > 10 * 1024 * 1024) {
-      toast.error("File size exceeds 10MB limit.");
+    // Validate file size (3MB)
+    if (file.size > 3 * 1024 * 1024) {
+      toast.error("File size exceeds 3MB limit.");
       return;
     }
 
@@ -551,7 +551,7 @@ export default function CareersPage() {
                         Click to upload or drag and drop
                       </p>
                       <p className="text-xs text-gray-400 mt-1">
-                        PDF, DOC, DOCX up to 10MB
+                        PDF, DOC, DOCX up to 3MB
                       </p>
                       <input
                         ref={fileInputRef}

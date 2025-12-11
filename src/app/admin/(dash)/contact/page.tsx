@@ -383,7 +383,7 @@ export default function ContactMessagesPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <button
                         onClick={() => confirmDelete(message._id)}
-                        className="text-gray-400 hover:text-red-600 transition-colors p-1 rounded-md hover:bg-red-50 opacity-0 group-hover:opacity-100"
+                        className="text-gray-400 hover:text-red-600 transition-colors p-1 rounded-md hover:bg-red-50"
                         title="Delete Message"
                       >
                         <Trash2 className="w-4 h-4" />

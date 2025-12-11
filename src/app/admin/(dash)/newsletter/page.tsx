@@ -246,7 +246,6 @@ export default function NewsletterPage() {
 
       {/* Main Content Card */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
@@ -311,7 +310,7 @@ export default function NewsletterPage() {
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <button
                         onClick={() => handleDelete(subscriber._id)}
-                        className="text-gray-400 hover:text-red-600 transition-colors p-1 rounded-md hover:bg-red-50 opacity-0 group-hover:opacity-100"
+                        className="text-gray-400 hover:text-red-600 transition-colors p-1 rounded-md hover:bg-red-50"
                         title="Delete Subscriber"
                       >
                         <Trash2 className="w-4 h-4" />

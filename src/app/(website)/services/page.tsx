@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Dot } from "lucide-react";
+import { Dot, Settings, Globe, Headset } from "lucide-react";
 import { AccordionItem } from "./AccordionItem";
 import ServiceAccordion from "@/components/ServiceAccordion";
 import {
@@ -29,36 +29,88 @@ export default function ServicesPage() {
       {/* --- Hero Section --- */}
       <section className="relative pt-20 pb-8 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
+            <span className="block mb-2">Transforming Customer Experience</span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-              360° Customer Experience
-            </span>{" "}
-            <span>Solutions</span>
+              Across the Globe
+            </span>
           </h1>
-          <p className="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-500 mb-4">
-            {customerExperienceOverview.subtitle}
-          </p>
-          <p className="max-w-2xl mx-auto text-base md:text-lg text-gray-600 mb-10">
-            {customerExperienceOverview.tagline}
+          <p className="mt-6 max-w-3xl mx-auto text-lg md:text-xl text-gray-600 leading-relaxed">
+            Delivering cutting-edge CX solutions powered by technology,
+            expertise, and agility to exceed customer expectations worldwide.
           </p>
         </div>
       </section>
 
-      {/* --- 360° Customer Experience Overview --- */}
-      <section className="py-16 px-4 bg-gray-50">
+      {/* --- Main Services Overview --- */}
+      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
+          <div className="text-center mb-16">
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-4">
-              Overview
+              Our Core Strengths
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              The Ultimate Brand Differentiator
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              What Sets Us Apart
             </h2>
           </div>
-          <div className="prose prose-lg max-w-none">
-            <p className="text-gray-600 leading-relaxed whitespace-pre-line">
-              {customerExperienceOverview.description}
-            </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Customized Solutions */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
+              <div className="mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4">
+                  <Settings className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Customized Solutions
+                </h3>
+              </div>
+              <p className="text-gray-600 leading-relaxed">
+                Our unique CX solutions at HK Nexus Global are built on a
+                foundation of cutting-edge technology, team expertise, and
+                agility. We are able to anticipate consumer needs and
+                continuously surpass their expectations thanks to this
+                combination.
+              </p>
+            </div>
+
+            {/* Worldwide Reach */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
+              <div className="mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  Worldwide Reach
+                </h3>
+              </div>
+              <p className="text-gray-600 leading-relaxed">
+                HK Nexus Global, which has strategically placed offices all
+                around the world, provides multilingual services,
+                round-the-clock assistance, and a thorough awareness of various
+                cultural nuances with the goal of increasing client
+                satisfaction.
+              </p>
+            </div>
+
+            {/* 360° Customer Experience */}
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
+              <div className="mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4">
+                  <Headset className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                  360° Customer Experience
+                </h3>
+              </div>
+              <p className="text-gray-600 leading-relaxed">
+                With our omni-channel solutions, we guarantee a 360° customer
+                experience. We use business intelligence to make strategic
+                decisions and provide customized inbound, outbound, staff
+                augmentation, and backend solutions to effectively address a
+                range of company requirements.
+              </p>
+            </div>
           </div>
         </div>
       </section>
