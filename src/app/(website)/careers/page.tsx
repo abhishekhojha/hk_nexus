@@ -2,7 +2,7 @@
 import React, { useState, useRef } from "react";
 import { MapPin, ArrowRight, Upload, Dot, X, FileText } from "lucide-react";
 import { toast } from "sonner";
-import { benefits, jobOpenings, lifeAtCompany } from "./data";
+import { benefits, jobOpenings, lifeAtCompany, locationData } from "./data";
 
 export default function CareersPage() {
   const [formData, setFormData] = useState({
@@ -16,6 +16,8 @@ export default function CareersPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [selectedState, setSelectedState] = useState("Madhya Pradesh");
+  const [selectedCity, setSelectedCity] = useState("Bhopal");
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -138,6 +140,30 @@ export default function CareersPage() {
     }
   };
 
+  const handleStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newState = e.target.value;
+    setSelectedState(newState);
+    // Auto-select first city of the new state
+    const state = locationData.states.find((s) => s.name === newState);
+    if (state && state.cities.length > 0) {
+      setSelectedCity(state.cities[0]);
+    }
+  };
+
+  const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCity(e.target.value);
+  };
+
+  const getCurrentCities = () => {
+    const state = locationData.states.find((s) => s.name === selectedState);
+    return state ? state.cities : [];
+  };
+
+  const handleViewBhopalOpenings = () => {
+    setSelectedState("Madhya Pradesh");
+    setSelectedCity("Bhopal");
+  };
+
   return (
     <main className="min-h-screen bg-white">
       {/* --- Hero Section --- */}
@@ -154,13 +180,23 @@ export default function CareersPage() {
             Join a fast-growing customer support & call-center team shaping the
             future of communication.
           </p>
-          <div className="flex justify-center gap-4">
-            <a
-              href="#openings"
-              className="bg-black text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-colors duration-200 text-center cursor-pointer shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
-            >
-              View Openings
-            </a>
+          <div className="flex gap-4 justify-center">
+            <div className="flex justify-center gap-4">
+              <a
+                href="#openings"
+                className="bg-black text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-colors duration-200 text-center cursor-pointer shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+              >
+                View Openings
+              </a>
+            </div>
+            <div className="flex justify-center gap-4">
+              <a
+                href="#apply-form"
+                className="bg-primary text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-colors duration-200 text-center cursor-pointer shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+              >
+                Apply Now
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -215,74 +251,152 @@ export default function CareersPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {jobOpenings.map((job, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
-              >
-                <div className="p-8 flex-grow flex flex-col items-start">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-semibold rounded-full">
-                      {job.type}
-                    </span>
-                    <span className="px-3 py-1 bg-gray-50 text-gray-600 text-xs font-semibold rounded-full flex items-center gap-1">
-                      <MapPin className="w-3 h-3" /> {job.location}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-[#594ad2] transition-colors">
-                    {job.title}
-                  </h3>
-
-                  <p className="text-gray-500 text-sm mb-6 leading-relaxed">
-                    {job.summary}
-                  </p>
-
-                  <div className="mb-6 w-full">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                      Key Responsibilities:
-                    </h4>
-                    <ul className="space-y-1">
-                      {job.responsibilities.slice(0, 3).map((resp, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start text-gray-500 text-xs"
-                        >
-                          <span className="w-1 h-1 bg-gray-400 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
-                          {resp}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mb-8 w-full">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                      Requirements:
-                    </h4>
-                    <ul className="space-y-1">
-                      {job.requirements.slice(0, 3).map((req, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start text-gray-500 text-xs"
-                        >
-                          <span className="w-1 h-1 bg-gray-400 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
-                          {req}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <a
-                    href="#apply-form"
-                    className="w-full mt-auto bg-white text-gray-900 border border-gray-200 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 text-center flex items-center justify-center gap-2 hover:bg-[#594ad2] hover:border-[#594ad2] hover:text-white"
-                  >
-                    Apply Now <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
+          {/* Location Filters */}
+          <div className="mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+              {/* Country Dropdown */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 block">
+                  Country
+                </label>
+                <select
+                  disabled
+                  value={locationData.country}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed outline-none"
+                >
+                  <option>{locationData.country}</option>
+                </select>
               </div>
-            ))}
+
+              {/* State Dropdown */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 block">
+                  State
+                </label>
+                <select
+                  value={selectedState}
+                  onChange={handleStateChange}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
+                >
+                  {locationData.states.map((state) => (
+                    <option key={state.name} value={state.name}>
+                      {state.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* City Dropdown */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700 block">
+                  City
+                </label>
+                <select
+                  value={selectedCity}
+                  onChange={handleCityChange}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
+                >
+                  {getCurrentCities().map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
           </div>
+
+          {/* Conditional Rendering: Jobs or Coming Soon */}
+          {selectedCity === "Bhopal" ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {jobOpenings.map((job, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+                >
+                  <div className="p-8 flex-grow flex flex-col items-start">
+                    <div className="flex items-center gap-2 mb-4">
+                      <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-semibold rounded-full">
+                        {job.type}
+                      </span>
+                      <span className="px-3 py-1 bg-gray-50 text-gray-600 text-xs font-semibold rounded-full flex items-center gap-1">
+                        <MapPin className="w-3 h-3" /> {job.location}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-[#594ad2] transition-colors">
+                      {job.title}
+                    </h3>
+
+                    <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+                      {job.summary}
+                    </p>
+
+                    <div className="mb-6 w-full">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                        Key Responsibilities:
+                      </h4>
+                      <ul className="space-y-1">
+                        {job.responsibilities.slice(0, 3).map((resp, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start text-gray-500 text-xs"
+                          >
+                            <span className="w-1 h-1 bg-gray-400 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                            {resp}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mb-8 w-full">
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                        Requirements:
+                      </h4>
+                      <ul className="space-y-1">
+                        {job.requirements.slice(0, 3).map((req, i) => (
+                          <li
+                            key={i}
+                            className="flex items-start text-gray-500 text-xs"
+                          >
+                            <span className="w-1 h-1 bg-gray-400 rounded-full mr-2 mt-1.5 flex-shrink-0"></span>
+                            {req}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <a
+                      href="#apply-form"
+                      className="w-full mt-auto bg-white text-gray-900 border border-gray-200 px-6 py-3 rounded-xl text-sm font-semibold transition-all duration-200 text-center flex items-center justify-center gap-2 hover:bg-[#594ad2] hover:border-[#594ad2] hover:text-white"
+                    >
+                      Apply Now <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16 px-4">
+              <div className="max-w-2xl mx-auto">
+                <MapPin className="w-16 h-16 text-gray-300 mx-auto mb-6" />
+                <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+                  Openings Coming Soon to {selectedCity}
+                </h3>
+                <p className="text-gray-500 text-lg mb-8">
+                  We're expanding! Check back soon for opportunities in your
+                  area.
+                </p>
+                <button
+                  onClick={handleViewBhopalOpenings}
+                  className="bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity shadow-lg inline-flex items-center gap-2"
+                >
+                  View Current Openings in Bhopal
+                  <ArrowRight className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

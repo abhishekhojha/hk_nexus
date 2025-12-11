@@ -30,6 +30,7 @@ export default function Navbar() {
     { name: "Careers", href: "/careers" },
     { name: "About", href: "/about" },
     { name: "Contact", href: "/contact" },
+    { name: "Blogs", href: "/blog" },
   ];
 
   return (
@@ -42,7 +43,7 @@ export default function Navbar() {
               <Link href="/" className="flex items-center gap-2">
                 <div className="relative h-12 w-12 md:w-15 md:h-15">
                   <Image
-                    src="/mainlogo.png"
+                    src="/logo.png"
                     alt="Logo"
                     fill
                     className="object-contain"
@@ -52,7 +53,7 @@ export default function Navbar() {
                   />
                 </div>
                 <span className="text-primary font-bold md:text-xl text-base tracking-tight">
-                  HK Nexus
+                  HK Nexus Global
                 </span>
               </Link>
             </div>

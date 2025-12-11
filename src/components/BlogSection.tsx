@@ -40,7 +40,7 @@ const blogPosts = [
   },
 ];
 
-const BlogSection = () => {
+const BlogSection = ({ title }: { title?: boolean }) => {
   return (
     <section className="relative w-full py-20 px-4 overflow-hidden bg-white">
       {/* Background Decorative Blob */}
@@ -48,24 +48,26 @@ const BlogSection = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header Section */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div className="max-w-2xl text-left">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-              Latest Insights
-            </h2>
-            <p className="text-gray-500 text-lg leading-relaxed">
-              Expert tips, industry trends, and actionable strategies to grow
-              your business.
-            </p>
-          </div>
+        {title && (
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <div className="max-w-2xl text-left">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+                Blogs
+              </h2>
+              <p className="text-gray-500 text-lg leading-relaxed">
+                Expert tips, industry trends, and actionable strategies to grow
+                your business.
+              </p>
+            </div>
 
-          <Link
-            href="/blog"
-            className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-colors shadow-lg shadow-primary/30 flex-shrink-0"
-          >
-            View All Articles
-          </Link>
-        </div>
+            <Link
+              href="/blog"
+              className="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg text-sm font-semibold transition-colors shadow-lg shadow-primary/30 flex-shrink-0"
+            >
+              View All Articles
+            </Link>
+          </div>
+        )}
 
         {/* Blog Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

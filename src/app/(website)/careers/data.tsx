@@ -1,11 +1,4 @@
-import {
-  TrendingUp,
-  Award,
-  Clock,
-  Smile,
-  Zap,
-  Monitor,
-} from "lucide-react";
+import { TrendingUp, Award, Clock, Smile, Zap, Monitor } from "lucide-react";
 export const benefits = [
   {
     title: "Growth-Focused",
@@ -212,3 +205,29 @@ export const lifeAtCompany = [
       "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1469&auto=format&fit=crop",
   },
 ];
+
+export const locationData = {
+  country: "India",
+  states: [
+    {
+      name: "Madhya Pradesh",
+      cities: ["Bhopal", "Indore", "Jabalpur"],
+    },
+    {
+      name: "Maharashtra",
+      cities: ["Mumbai", "Pune", "Nagpur"],
+    },
+    {
+      name: "Karnataka",
+      cities: ["Bangalore", "Mysore", "Hubli"],
+    },
+    {
+      name: "Delhi",
+      cities: ["New Delhi", "Noida", "Gurgaon"],
+    },
+    {
+      name: "Tamil Nadu",
+      cities: ["Chennai", "Coimbatore", "Madurai"],
+    },
+  ],
+};

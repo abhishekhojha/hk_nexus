@@ -17,6 +17,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "HK Nexus",
   description: "BPO Solutions",
+  icons: {
+    icon: "/fav.png",
+  },
 };
 
 export default function RootLayout({
@@ -26,6 +29,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/fav.png" sizes="any" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

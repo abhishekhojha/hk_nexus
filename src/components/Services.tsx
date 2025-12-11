@@ -6,36 +6,15 @@ import {
   TrendingUp,
   Settings,
   Languages,
+  Globe,
 } from "lucide-react";
 
 // 1. Define the Data
 const services = [
   {
-    title: "Inbound Customer Support",
+    title: "Customized Solutions, Worldwide Reach",
     description:
-      "Fast, friendly, 24/7 customer assistance for queries, orders, and issue resolution.",
-    icon: (
-      <Headset
-        className="w-10 h-10"
-        style={{ stroke: "url(#icon-gradient)" }}
-      />
-    ),
-  },
-  {
-    title: "Outbound Sales and Telemarketing",
-    description:
-      "Targeted outbound calling to generate leads, qualify prospects, and close sales.",
-    icon: (
-      <TrendingUp
-        className="w-10 h-10"
-        style={{ stroke: "url(#icon-gradient)" }}
-      />
-    ),
-  },
-  {
-    title: "Technical Support",
-    description:
-      "L1–L3 support for troubleshooting software, hardware, and app issues.",
+      "Our unique CX solutions at HK Nexus Global are built on a foundation of cutting-edge technology, team expertise, and agility. We are able to anticipate consumer needs and continuously surpass their expectations thanks to this combination.",
     icon: (
       <Settings
         className="w-10 h-10"
@@ -44,11 +23,19 @@ const services = [
     ),
   },
   {
-    title: "Multilingual Support",
+    title: "Worldwide Assistance",
     description:
-      "Native-level agents offering support in multiple regional & global languages.",
+      "HK Nexus Global, which has strategically placed offices all around the world, provides multilingual services, round-the-clock assistance, and a thorough awareness of various cultural nuances with the goal of increasing client satisfaction.",
     icon: (
-      <Languages
+      <Globe className="w-10 h-10" style={{ stroke: "url(#icon-gradient)" }} />
+    ),
+  },
+  {
+    title: "360° Customer Experience",
+    description:
+      "With our omni-channel solutions, we guarantee a 360° customer experience. We use business intelligence to make strategic decisions and provide customized inbound, outbound, staff augmentation, and backend solutions to effectively address a range of company requirements.",
+    icon: (
+      <Headset
         className="w-10 h-10"
         style={{ stroke: "url(#icon-gradient)" }}
       />
@@ -94,7 +81,7 @@ const ServicesSection = () => {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <div
               key={index}

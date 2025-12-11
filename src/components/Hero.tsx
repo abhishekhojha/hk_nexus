@@ -1,8 +1,9 @@
 import { Dot } from "lucide-react";
+import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="relative md:pt-20 pt-10 pb-20 lg:pb-28 overflow-hidden">
+    <section className="relative overflow-hidden my-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h5 className="text-xs md:text-lg text-gray-500 flex items-center justify-center">
           <Dot className="text-green-500 h-12 w-12" /> 24/7 availability, 40%
@@ -73,9 +74,9 @@ export default function Hero() {
                   <button className="bg-black text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200 text-center cursor-pointer">
                     Get a Free Quote
                   </button>
-                  <button className="bg-white text-gray-700 border border-gray-300 px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors duration-200 text-center cursor-pointer">
-                    Talk to an expert
-                  </button>
+                  <Link className="bg-white text-gray-700 border border-gray-300 px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors duration-200 text-center cursor-pointer" href="/contact">
+                      Talk to an expert
+                  </Link>
                 </div>
               </div>
             </div>

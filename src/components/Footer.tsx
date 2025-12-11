@@ -157,15 +157,17 @@ const Footer = () => {
             </ul>
 
             {/* CTA Button with Hover Fill Effect */}
-            <button className="group relative flex items-center justify-between w-full max-w-[220px] py-3.5 px-6 rounded-full border border-gray-300 overflow-hidden transition-all duration-300 hover:border-gray-900 hover:shadow-lg">
-              {/* Background fill animation */}
-              <div className="absolute inset-0 w-0 bg-gray-900 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+            <Link href="/contact">
+              <button className="group relative flex items-center justify-between w-full max-w-[220px] py-3.5 px-6 rounded-full border border-gray-300 overflow-hidden transition-all duration-300 hover:border-gray-900 hover:shadow-lg">
+                {/* Background fill animation */}
+                <div className="absolute inset-0 w-0 bg-gray-900 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
 
-              <span className="relative z-10 text-sm font-bold text-gray-700 group-hover:text-white transition-colors duration-200">
-                Talk to an expert
-              </span>
-              <ArrowRight className="relative z-10 w-4 h-4 text-gray-700 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
-            </button>
+                <span className="relative z-10 text-sm font-bold text-gray-700 group-hover:text-white transition-colors duration-200">
+                  Talk to an expert
+                </span>
+                <ArrowRight className="relative z-10 w-4 h-4 text-gray-700 group-hover:text-white group-hover:translate-x-1 transition-all duration-200" />
+              </button>
+            </Link>
           </div>
         </div>
 

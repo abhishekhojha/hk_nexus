@@ -134,20 +134,33 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
                 <p>
-                  Founded in 2020, HK Nexus started with a simple mission: to
-                  provide businesses with reliable, high-quality support
-                  services that feel like an extension of their own team.
+                  Founded in 2025, HK Nexus began with a simple belief — that
+                  businesses grow faster when they have the right people
+                  standing beside them. What started as a small, passionate team
+                  determined to deliver reliable, high-quality support has grown
+                  into a global service partner trusted across industries. But
+                  beyond growth, it has been a journey of resilience, hope, and
+                  shared dreams.
                 </p>
                 <p>
-                  What began as a small team of dedicated professionals has
-                  grown into a global organization, serving clients across
-                  various industries. We believe in the power of human
-                  connection enhanced by technology.
+                  As the world evolved, so did we. We expanded our capabilities,
+                  strengthened our foundation, and embraced innovation —
+                  including intelligent automation, call-center process
+                  optimization, predictive dialers, conversational AI, and
+                  analytics-driven decision-making. We reinforced our
+                  infrastructure with advanced security technologies, encrypted
+                  systems, and protective firewalls designed to safeguard every
+                  interaction and defend client data with uncompromising
+                  reliability.
                 </p>
                 <p>
-                  Today, we continue to expand our capabilities, always staying
-                  true to our core belief that great service is the foundation
-                  of business success.
+                  Today, HK Nexus stands as a symbol of possibility. A place
+                  where businesses find not just support, but strategy. Not just
+                  execution, but growth. Not just a vendor, but a team they can
+                  truly trust. We continue forward with a clear and courageous
+                  vision — to shape the future of outsourcing through people,
+                  empathy, innovation, and AI-powered solutions that empower,
+                  inspire, and elevate every business we serve.
                 </p>
               </div>
             </div>

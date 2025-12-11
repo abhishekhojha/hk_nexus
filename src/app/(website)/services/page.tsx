@@ -1,8 +1,19 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { Dot } from "lucide-react";
 import { AccordionItem } from "./AccordionItem";
-import { coreServices, industryDetails, whyChooseUsCards } from "./data";
+import ServiceAccordion from "@/components/ServiceAccordion";
+import {
+  coreServices,
+  industryDetails,
+  whyChooseUsCards,
+  customerExperienceOverview,
+  emergencyHelplineService,
+  digitalTransformationOverview,
+  digitalTransformationServices,
+} from "./data";
 
 // --- Data Definitions ---
 
@@ -19,17 +30,41 @@ export default function ServicesPage() {
       <section className="relative pt-20 pb-8 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6">
-            <span>Our</span> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Services</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+              360° Customer Experience
+            </span>{" "}
+            <span>Solutions</span>
           </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-gray-500 mb-10">
-            End-to-end call center, support and BPO solutions built to scale
-            your business.
+          <p className="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-500 mb-4">
+            {customerExperienceOverview.subtitle}
+          </p>
+          <p className="max-w-2xl mx-auto text-base md:text-lg text-gray-600 mb-10">
+            {customerExperienceOverview.tagline}
           </p>
         </div>
       </section>
 
+      {/* --- 360° Customer Experience Overview --- */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-8">
+            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-4">
+              Overview
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              The Ultimate Brand Differentiator
+            </h2>
+          </div>
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+              {customerExperienceOverview.description}
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* --- Interactive Services Grid --- */}
-      <section className="relative w-full pb-24 px-4 overflow-hidden bg-white">
+      <section className="relative w-full py-24 px-4 overflow-hidden bg-white">
         {/* SVG Gradient Definition for Icons */}
         <svg width="0" height="0" className="absolute block">
           <defs>
@@ -47,6 +82,15 @@ export default function ServicesPage() {
         </svg>
 
         <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Core Services
+            </h2>
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
+              Comprehensive solutions tailored to your business needs
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {coreServices.map((service, index) => (
               <div
@@ -76,6 +120,107 @@ export default function ServicesPage() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- Emergency Helpline Section --- */}
+      <section className="py-20 px-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div>
+              <span className="inline-block px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-semibold tracking-wide mb-6">
+                Emergency Services
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                {emergencyHelplineService.title}
+              </h2>
+              <p className="text-gray-600 leading-relaxed mb-8">
+                {emergencyHelplineService.description}
+              </p>
+
+              {/* CTA Box */}
+              <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                  {emergencyHelplineService.cta.title}
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  {emergencyHelplineService.cta.subtitle}
+                </p>
+                <Link
+                  href="/contact"
+                  className="inline-block bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity shadow-lg"
+                >
+                  Contact Us Today
+                </Link>
+              </div>
+            </div>
+
+            {/* Image */}
+            <div className="relative">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/services/emergency-helpline.png"
+                  alt="Emergency Helpline Control Center"
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- Digital Transformation Section --- */}
+      <section className="py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-4">
+              Digital Solutions
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+              {digitalTransformationOverview.title}
+            </h2>
+            <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold mb-4">
+              {digitalTransformationOverview.subtitle}
+            </p>
+            <p className="text-gray-600 text-lg max-w-4xl mx-auto leading-relaxed mb-8">
+              {digitalTransformationOverview.description}
+            </p>
+          </div>
+
+          {/* Hero Image */}
+          <div className="mb-16">
+            <div className="rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
+              <Image
+                src="/images/services/digital-transformation.png"
+                alt="Digital Transformation with AI"
+                width={1200}
+                height={600}
+                className="w-full h-auto object-cover"
+              />
+            </div>
+          </div>
+
+          {/* Services Accordion */}
+          <div className="mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+              Our Digital Transformation Services
+            </h3>
+            <ServiceAccordion services={digitalTransformationServices} />
+          </div>
+
+          {/* Contact CTA */}
+          <div className="text-center mt-16">
+            <Link
+              href="/contact"
+              className="inline-block bg-gradient-to-r from-secondary to-primary text-white px-10 py-5 rounded-full text-lg font-semibold hover:opacity-90 transition-opacity shadow-xl"
+            >
+              Contact Us to Get Started
+            </Link>
           </div>
         </div>
       </section>
@@ -164,12 +309,18 @@ export default function ServicesPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-black text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-colors duration-200 text-center cursor-pointer shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all">
+              <Link
+                href="/contact"
+                className="bg-black text-white px-8 py-4 rounded-full text-base font-medium hover:bg-gray-800 transition-colors duration-200 text-center cursor-pointer shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+              >
                 Get a Free Quote
-              </button>
-              <button className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-full text-base font-medium hover:bg-gray-50 transition-colors duration-200 text-center cursor-pointer hover:shadow-md">
+              </Link>
+              <Link
+                href="/contact"
+                className="bg-white text-gray-700 border border-gray-300 px-8 py-4 rounded-full text-base font-medium hover:bg-gray-50 transition-colors duration-200 text-center cursor-pointer hover:shadow-md"
+              >
                 Talk to an expert
-              </button>
+              </Link>
             </div>
           </div>
         </div>
