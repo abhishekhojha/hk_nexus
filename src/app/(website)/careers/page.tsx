@@ -391,7 +391,7 @@ export default function CareersPage() {
                   onClick={handleViewBhopalOpenings}
                   className="bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity shadow-lg inline-flex items-center gap-2"
                 >
-                  View Current Openings in Bhopal
+                  View Current Openings
                   <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
