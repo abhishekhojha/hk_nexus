@@ -35,15 +35,21 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 py-2 sticky md:relative top-0 transition-all duration-300">
+      <nav className="z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 py-4 sticky md:relative top-0 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center z-50">
               <Link href="/" className="flex items-center gap-2">
-                <div className="relative h-12 w-12 md:w-15 md:h-15">
+                <div
+                  className="relative h-12 w-22 md:w-15 md:h-15"
+                  style={{
+                    width: "210px",
+                    height: "75px",
+                  }}
+                >
                   <Image
-                    src="/mainlogo.png"
+                    src="/logo.png"
                     alt="Logo"
                     fill
                     className="object-contain"
@@ -52,9 +58,9 @@ export default function Navbar() {
                     }}
                   />
                 </div>
-                <span className="text-primary font-bold md:text-xl text-base tracking-tight">
+                {/* <span className="text-primary font-bold md:text-xl text-base tracking-tight">
                   HK Nexus Global
-                </span>
+                </span> */}
               </Link>
             </div>
 
