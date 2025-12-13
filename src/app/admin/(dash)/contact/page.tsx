@@ -8,6 +8,7 @@ interface ContactMessage {
   _id: string;
   name: string;
   email: string;
+  phone: string;
   subject: string;
   message: string;
   status: "new" | "read" | "replied";
@@ -67,10 +68,11 @@ export default function ContactMessagesPage() {
       if (res.ok) {
         const data = await res.json();
         const csvContent = [
-          ["Name", "Email", "Subject", "Message", "Status", "Date"],
+          ["Name", "Email", "Phone", "Subject", "Message", "Status", "Date"],
           ...data.messages.map((msg: ContactMessage) => [
             msg.name,
             msg.email,
+            msg.phone,
             msg.subject,
             msg.message.replace(/\n/g, " "),
             msg.status,
@@ -302,6 +304,9 @@ export default function ContactMessagesPage() {
                   Email
                 </th>
                 <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                  Phone
+                </th>
+                <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   Subject
                 </th>
                 <th className="px-6 py-4 text-xs font-semibold text-gray-500 uppercase tracking-wider">
@@ -319,7 +324,7 @@ export default function ContactMessagesPage() {
               {messages.length === 0 ? (
                 <tr>
                   <td
-                    colSpan={6}
+                    colSpan={7}
                     className="px-6 py-12 text-center text-gray-500"
                   >
                     <div className="flex flex-col items-center justify-center">
@@ -358,6 +363,14 @@ export default function ContactMessagesPage() {
                       >
                         <Mail className="w-3 h-3" />
                         {message.email}
+                      </a>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <a
+                        href={`tel:${message.phone}`}
+                        className="text-sm text-gray-600 hover:text-primary transition-colors"
+                      >
+                        {message.phone}
                       </a>
                     </td>
                     <td className="px-6 py-4">

@@ -64,8 +64,6 @@ export default function Home() {
         </section>
         <ServicesSection />
         <WhyHKNexus />
-
-        <BlogSection title={true} />
         <FAQSection />
         <NewsletterSection />
       </main>

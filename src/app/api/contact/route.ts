@@ -5,10 +5,10 @@ import Contact from "@/models/Contact";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, subject, message } = body;
+    const { name, email, phone, subject, message } = body;
 
     // Validate required fields
-    if (!name || !email || !subject || !message) {
+    if (!name || !email || !phone || !subject || !message) {
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
     const contact = await Contact.create({
       name,
       email,
+      phone,
       subject,
       message,
       status: "new",

@@ -19,6 +19,7 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   });
@@ -47,7 +48,13 @@ export default function ContactPage() {
         toast.success(
           "Thank you for your message! We will get back to you soon."
         );
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
       } else {
         toast.error(data.error || "Failed to send message. Please try again.");
       }
@@ -80,13 +87,6 @@ export default function ContactPage() {
       email: "support@hknexus.com",
       phone: "+1 (800) 123-4568",
       icon: <HelpCircle className="w-6 h-6" />,
-    },
-    {
-      name: "Partnerships",
-      description: "Explore collaboration opportunities with us.",
-      email: "partners@hknexus.com",
-      phone: "+1 (800) 123-4569",
-      icon: <Users className="w-6 h-6" />,
     },
   ];
 
@@ -148,7 +148,7 @@ export default function ContactPage() {
                     <h3 className="text-lg font-semibold text-gray-900 mb-1">
                       Email
                     </h3>
-                    <p className="text-gray-600">info@hknexus.com</p>
+                    <p className="text-gray-600">info@hknexusglobal.com</p>
                     <p className="text-gray-500 text-sm mt-1">
                       Online support 24/7
                     </p>
@@ -221,23 +221,43 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
-                    placeholder="How can we help?"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="phone"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Phone Number
+                    </label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                      placeholder="+1 (555) 123-4567"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                      placeholder="How can we help?"
+                    />
+                  </div>
                 </div>
 
                 <div>

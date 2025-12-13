@@ -74,8 +74,11 @@ export default function Hero() {
                   <button className="bg-black text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200 text-center cursor-pointer">
                     Get a Free Quote
                   </button>
-                  <Link className="bg-white text-gray-700 border border-gray-300 px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors duration-200 text-center cursor-pointer" href="/contact">
-                      Talk to an expert
+                  <Link
+                    className="bg-white text-gray-700 border border-gray-300 px-6 py-3 rounded-full text-sm font-medium hover:bg-gray-50 transition-colors duration-200 text-center cursor-pointer"
+                    href="/contact"
+                  >
+                    Talk to an expert
                   </Link>
                 </div>
               </div>

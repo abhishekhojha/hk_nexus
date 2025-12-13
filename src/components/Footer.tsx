@@ -149,7 +149,7 @@ const Footer = () => {
                 1-800-123-4567
               </li>
               <li className="text-gray-600 font-medium text-[15px] hover:text-gray-900 cursor-pointer transition-colors">
-                info@hknexus.com
+                info@hknexusglobal.com
               </li>
               <li className="text-gray-600 font-medium text-[15px]">
                 Mon–Fri, 9am–6pm

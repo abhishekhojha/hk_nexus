@@ -16,8 +16,8 @@ export default function CareersPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [selectedState, setSelectedState] = useState("Madhya Pradesh");
-  const [selectedCity, setSelectedCity] = useState("Bhopal");
+  const [selectedState, setSelectedState] = useState("All States");
+  const [selectedCity, setSelectedCity] = useState("All Cities");
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -143,10 +143,15 @@ export default function CareersPage() {
   const handleStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newState = e.target.value;
     setSelectedState(newState);
-    // Auto-select first city of the new state
-    const state = locationData.states.find((s) => s.name === newState);
-    if (state && state.cities.length > 0) {
-      setSelectedCity(state.cities[0]);
+    // If "All States" is selected, set city to "All Cities"
+    if (newState === "All States") {
+      setSelectedCity("All Cities");
+    } else {
+      // Auto-select first city of the new state
+      const state = locationData.states.find((s) => s.name === newState);
+      if (state && state.cities.length > 0) {
+        setSelectedCity(state.cities[0]);
+      }
     }
   };
 
@@ -155,8 +160,11 @@ export default function CareersPage() {
   };
 
   const getCurrentCities = () => {
+    if (selectedState === "All States") {
+      return ["All Cities"];
+    }
     const state = locationData.states.find((s) => s.name === selectedState);
-    return state ? state.cities : [];
+    return state ? ["All Cities", ...state.cities] : ["All Cities"];
   };
 
   const handleViewBhopalOpenings = () => {
@@ -278,6 +286,7 @@ export default function CareersPage() {
                   onChange={handleStateChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
                 >
+                  <option value="All States">All States</option>
                   {locationData.states.map((state) => (
                     <option key={state.name} value={state.name}>
                       {state.name}
@@ -307,7 +316,9 @@ export default function CareersPage() {
           </div>
 
           {/* Conditional Rendering: Jobs or Coming Soon */}
-          {selectedCity === "Bhopal" ? (
+          {selectedState === "All States" ||
+          selectedCity === "All Cities" ||
+          selectedCity === "Bhopal" ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {jobOpenings.map((job, index) => (
                 <div

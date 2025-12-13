@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Dot, Settings, Globe, Headset } from "lucide-react";
 import { AccordionItem } from "./AccordionItem";
 import ServiceAccordion from "@/components/ServiceAccordion";
+import { motion } from "framer-motion";
 import {
   coreServices,
   industryDetails,
@@ -14,6 +15,44 @@ import {
   digitalTransformationOverview,
   digitalTransformationServices,
 } from "./data";
+
+// --- Animation Variants ---
+const fadeInUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 30 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.5 },
+  },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
 
 // --- Data Definitions ---
 
@@ -28,7 +67,13 @@ export default function ServicesPage() {
     <main className="min-h-screen bg-white">
       {/* --- Hero Section --- */}
       <section className="relative pt-20 pb-8 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <motion.div
+          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+        >
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
             <span className="block mb-2">Transforming Customer Experience</span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
@@ -39,24 +84,39 @@ export default function ServicesPage() {
             Delivering cutting-edge CX solutions powered by technology,
             expertise, and agility to exceed customer expectations worldwide.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* --- Main Services Overview --- */}
       <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+          >
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-4">
               Our Core Strengths
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
               What Sets Us Apart
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
             {/* Customized Solutions */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
+              variants={fadeInUp}
+            >
               <div className="mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4">
                   <Settings className="w-8 h-8 text-white" />
@@ -72,10 +132,13 @@ export default function ServicesPage() {
                 continuously surpass their expectations thanks to this
                 combination.
               </p>
-            </div>
+            </motion.div>
 
             {/* Worldwide Reach */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
+              variants={fadeInUp}
+            >
               <div className="mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4">
                   <Globe className="w-8 h-8 text-white" />
@@ -91,10 +154,13 @@ export default function ServicesPage() {
                 cultural nuances with the goal of increasing client
                 satisfaction.
               </p>
-            </div>
+            </motion.div>
 
             {/* 360° Customer Experience */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100">
+            <motion.div
+              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
+              variants={fadeInUp}
+            >
               <div className="mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-4">
                   <Headset className="w-8 h-8 text-white" />
@@ -110,8 +176,8 @@ export default function ServicesPage() {
                 augmentation, and backend solutions to effectively address a
                 range of company requirements.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -134,20 +200,33 @@ export default function ServicesPage() {
         </svg>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+          >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Core Services
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
               Comprehensive solutions tailored to your business needs
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
+          >
             {coreServices.map((service, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
+                variants={fadeInUp}
               >
                 <div className="p-8 flex-grow flex flex-col items-start">
                   <div className="mb-6 transform group-hover:scale-110 transition-transform duration-300">
@@ -170,9 +249,9 @@ export default function ServicesPage() {
                     ))}
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -181,7 +260,12 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
-            <div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInLeft}
+            >
               <span className="inline-block px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-semibold tracking-wide mb-6">
                 Emergency Services
               </span>
@@ -207,10 +291,16 @@ export default function ServicesPage() {
                   Contact Us Today
                 </Link>
               </div>
-            </div>
+            </motion.div>
 
             {/* Image */}
-            <div className="relative">
+            <motion.div
+              className="relative"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={fadeInRight}
+            >
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/services/emergency-helpline.png"
@@ -220,7 +310,7 @@ export default function ServicesPage() {
                   className="w-full h-auto object-cover"
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -229,7 +319,13 @@ export default function ServicesPage() {
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
+          <motion.div
+            className="text-center mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+          >
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-4">
               Digital Solutions
             </span>
@@ -242,7 +338,7 @@ export default function ServicesPage() {
             <p className="text-gray-600 text-lg max-w-4xl mx-auto leading-relaxed mb-8">
               {digitalTransformationOverview.description}
             </p>
-          </div>
+          </motion.div>
 
           {/* Hero Image */}
           <div className="mb-16">
@@ -281,7 +377,13 @@ export default function ServicesPage() {
       <section className="py-20 px-6 lg:px-8 max-w-7xl mx-auto bg-gray-50 rounded-3xl mb-20">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* Left Column */}
-          <div className="lg:col-span-2 lg:sticky lg:top-24">
+          <motion.div
+            className="lg:col-span-2 lg:sticky lg:top-24"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInLeft}
+          >
             <span className="inline-block px-4 py-2 rounded-full bg-[#594ad2]/10 text-[#594ad2] text-sm font-semibold tracking-wide mb-8">
               Specialized Sectors
             </span>
@@ -292,10 +394,16 @@ export default function ServicesPage() {
               We tailor our solutions to meet the unique challenges and
               compliance requirements of your specific industry.
             </p>
-          </div>
+          </motion.div>
 
           {/* Right Column: Accordion */}
-          <div className="lg:col-span-3 w-full">
+          <motion.div
+            className="lg:col-span-3 w-full"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeInRight}
+          >
             {industryDetails.map((industry, index) => (
               <AccordionItem
                 key={industry.id}
@@ -306,27 +414,40 @@ export default function ServicesPage() {
                 onClick={() => handleIndustryToggle(index)}
               />
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* --- Why Choose Us Section --- */}
       <section className="w-full py-20 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <motion.div
+            className="text-center mb-16"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeInUp}
+          >
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
               Why Choose Us
             </h2>
             <p className="text-gray-500 text-lg md:text-xl font-medium max-w-2xl mx-auto">
               Delivering excellence through people, process, and technology.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={staggerContainer}
+          >
             {whyChooseUsCards.map((card, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="bg-gray-50 rounded-xl p-8 shadow-sm flex flex-col hover:shadow-md transition-shadow duration-300 border border-gray-100"
+                variants={fadeInUp}
               >
                 <div className="flex justify-between items-end border-b border-gray-200 pb-4 mb-6">
                   <div className="p-2 bg-transparent">{card.icon}</div>
@@ -342,15 +463,21 @@ export default function ServicesPage() {
                     {card.description}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* --- CTA Footer --- */}
       <section className="w-full py-20 px-4 flex justify-center items-center bg-white">
-        <div className="max-w-5xl w-full relative rounded-3xl p-8 lg:p-12 flex flex-col items-center text-center bg-gradient-to-br from-[#BC55D8] via-[#B06CE5] to-[#9FD6FF] shadow-2xl">
+        <motion.div
+          className="max-w-5xl w-full relative rounded-3xl p-8 lg:p-12 flex flex-col items-center text-center bg-gradient-to-br from-[#BC55D8] via-[#B06CE5] to-[#9FD6FF] shadow-2xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeInUp}
+        >
           <div className="bg-white rounded-2xl p-8 lg:p-12 w-full shadow-lg max-w-3xl">
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
               Ready to Transform Your Business?
@@ -375,7 +502,7 @@ export default function ServicesPage() {
               </Link>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </main>
   );
