@@ -69,11 +69,11 @@ export default function Hero() {
             </div>
           </div>
         </section>
-        <h5 className="text-xs md:text-lg text-gray-500 flex items-center justify-center">
+        {/* <h5 className="text-xs md:text-lg text-gray-500 flex items-center justify-center">
           <Dot className="text-green-500 h-12 w-12" /> 24/7 availability, 40%
           cost savings, multilingual reach
-        </h5>
-        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
+        </h5> */}
+        <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight text-gray-900 my-6">
           <span className="block">Powering World-Class Customer</span>
           <span>Support for </span>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-primary">
