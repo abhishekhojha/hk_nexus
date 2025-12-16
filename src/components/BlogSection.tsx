@@ -69,66 +69,78 @@ const BlogSection = ({ title }: { title?: boolean }) => {
           </div>
         )}
 
-        {/* Blog Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post) => (
-            <article
-              key={post.id}
-              className="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group flex flex-col"
-            >
-              {/* Image Container */}
-              <div className="relative w-full h-52 overflow-hidden bg-gray-100">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                {/* Category Badge */}
+        {/* Blog List - Alternating Layout */}
+        <div className="space-y-12">
+          {blogPosts.map((post, index) => {
+            const isEven = index % 2 === 0;
+
+            return (
+              <article
+                key={post.id}
+                className={`bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group`}
+              >
                 <div
-                  className="absolute top-4 left-4 px-3 py-1 rounded-full text-white text-xs font-semibold backdrop-blur-sm"
-                  style={{
-                    background: `linear-gradient(to right, var(--secondary), var(--primary))`,
-                  }}
+                  className={`flex flex-col ${
+                    isEven ? "lg:flex-row" : "lg:flex-row-reverse"
+                  } gap-0`}
                 >
-                  {post.category}
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 flex-grow flex flex-col">
-                {/* Meta Info */}
-                <div className="flex items-center gap-4 text-xs text-gray-400 mb-3">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="w-3.5 h-3.5" />
-                    <span>{post.date}</span>
+                  {/* Image Container */}
+                  <div className="relative w-full lg:w-1/2 h-64 lg:h-96 overflow-hidden bg-gray-100">
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    {/* Category Badge */}
+                    <div
+                      className={`absolute top-6 ${
+                        isEven ? "left-6" : "right-6"
+                      } px-4 py-2 rounded-full text-white text-sm font-semibold backdrop-blur-sm shadow-lg`}
+                      style={{
+                        background: `linear-gradient(to right, var(--secondary), var(--primary))`,
+                      }}
+                    >
+                      {post.category}
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>{post.readTime}</span>
+
+                  {/* Content */}
+                  <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+                    {/* Meta Info */}
+                    <div className="flex items-center gap-6 text-sm text-gray-400 mb-4">
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>{post.date}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4" />
+                        <span>{post.readTime}</span>
+                      </div>
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-primary transition-colors">
+                      {post.title}
+                    </h3>
+
+                    {/* Excerpt */}
+                    <p className="text-gray-600 text-base lg:text-lg leading-relaxed mb-6">
+                      {post.excerpt}
+                    </p>
+
+                    {/* Read More Link */}
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      className="inline-flex items-center gap-2 text-primary font-semibold text-base group-hover:gap-4 transition-all w-fit"
+                    >
+                      Read More
+                      <ArrowRight className="w-5 h-5" />
+                    </Link>
                   </div>
                 </div>
-
-                {/* Title */}
-                <h3 className="text-xl font-bold text-gray-900 mb-3 leading-tight group-hover:text-primary transition-colors">
-                  {post.title}
-                </h3>
-
-                {/* Excerpt */}
-                <p className="text-gray-500 text-sm leading-relaxed mb-4 flex-grow">
-                  {post.excerpt}
-                </p>
-
-                {/* Read More Link */}
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="inline-flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all"
-                >
-                  Read More
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
