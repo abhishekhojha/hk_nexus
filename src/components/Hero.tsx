@@ -32,7 +32,7 @@ export default function Hero() {
     },
     {
       type: "video" as const,
-      video: "/videos/slider_video.mp4",
+      video: "/videos/home/slider.mp4",
       title: "Experience Excellence in Action",
       subtitle: "See our solutions come to life",
       description:
