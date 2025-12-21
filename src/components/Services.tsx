@@ -45,7 +45,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="relative w-full pb-16 px-4 overflow-hidden bg-white">
+    <section className="relative w-full pb-16 px-18 overflow-hidden bg-white">
       {/* Background Decorative Blob (Subtle wave effect from top left) */}
       <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-gray-50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 opacity-60 pointer-events-none" />
 
@@ -63,7 +63,7 @@ const ServicesSection = () => {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div className="max-w-2xl text-left">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
               Our Services
             </h2>
             <p className="text-gray-500 text-lg leading-relaxed">

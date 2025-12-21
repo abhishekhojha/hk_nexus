@@ -93,7 +93,7 @@ const FAQSection = () => {
   };
 
   return (
-    <section className="py-20 px-6 lg:px-8 max-w-7xl mx-auto bg-white w-full">
+    <section className="py-20 px-6 lg:px-16 max-w-7xl mx-auto bg-white w-full">
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
         {/* Left Column: Header Info (Takes up 2/5 columns on large screens) */}
         <div className="lg:col-span-2 lg:sticky lg:top-8">
@@ -103,7 +103,7 @@ const FAQSection = () => {
           </span>
 
           {/* Main Title */}
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 text-gray-900">
+          <h2 className="text-2xl md:text-3xl lg:text-3xl xl:text-3xl font-bold mb-6 text-gray-900">
             Frequently Asked <span className="text-[#594ad2]">Questions</span>
           </h2>
 

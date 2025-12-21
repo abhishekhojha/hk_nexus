@@ -1,14 +1,15 @@
 "use client";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const slides = [
     {
       type: "image" as const,
-      image: "/images/slider/1.png",
+      image: "/images/home/slider/1.png",
       title: "Customer Service in 360-degree",
       subtitle: "Scalable, virtual, and real",
       description:
@@ -16,7 +17,7 @@ export default function Hero() {
     },
     {
       type: "image" as const,
-      image: "/images/slider/2.png",
+      image: "/images/home/slider/2.png",
       title: "INTELLIGENCE ORCHESTRATION WITH EXCELLENCE",
       subtitle: "AI that grows. knowledge that lasts.",
       description:
@@ -24,7 +25,7 @@ export default function Hero() {
     },
     {
       type: "image" as const,
-      image: "/images/slider/3.png",
+      image: "/images/home/slider/3.png",
       title: "Powering Global Business Excellence",
       subtitle: "Technology meets human expertise",
       description:
@@ -40,11 +41,18 @@ export default function Hero() {
     },
   ];
 
+  // Set video playback rate
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.7;
+    }
+  }, [currentSlide]);
+
   // Auto-slide functionality
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // Change slide every 5 seconds
+    }, 8000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
   }, [slides.length]);
@@ -61,7 +69,7 @@ export default function Hero() {
     <section className="relative overflow-hidden">
       <div className="w-full">
         {/* Full Width Image Slider Container */}
-        <div className="relative h-[500px] lg:h-[600px] w-full overflow-hidden group">
+        <div className="relative h-[450px] lg:h-[450px] xl:h-[480px] w-full overflow-hidden group">
           {/* Slider Images/Videos with Overlay */}
           {slides.map((slide, index) => (
             <div
@@ -79,6 +87,7 @@ export default function Hero() {
                 />
               ) : (
                 <video
+                  ref={videoRef}
                   src={slide.video}
                   autoPlay
                   loop
@@ -92,15 +101,15 @@ export default function Hero() {
               <div className="absolute inset-0 bg-black/40"></div>
 
               {/* Text Content Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center px-4 sm:px-6 lg:px-8">
-                <div className="max-w-5xl w-full text-center text-white">
-                  <h1 className="text-3xl sm:text-4xl lg:text-6xl font-extrabold tracking-tight mb-4 drop-shadow-lg">
+              <div className="absolute inset-0 flex items-center justify-center px-6 sm:px-8 lg:px-16 xl:px-24">
+                <div className="max-w-4xl w-full text-center text-white">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-4xl font-extrabold tracking-tight mb-3 drop-shadow-lg">
                     {slide.title}
                   </h1>
-                  <p className="text-xl sm:text-2xl lg:text-3xl font-semibold mb-6 drop-shadow-md">
+                  <p className="text-lg sm:text-xl lg:text-xl xl:text-xl font-semibold mb-4 drop-shadow-md">
                     {slide.subtitle}
                   </p>
-                  <p className="text-sm sm:text-base lg:text-lg max-w-3xl mx-auto leading-relaxed drop-shadow-md">
+                  <p className="text-sm sm:text-sm lg:text-sm xl:text-sm max-w-2xl mx-auto leading-relaxed drop-shadow-md">
                     {slide.description}
                   </p>
                 </div>

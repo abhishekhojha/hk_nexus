@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Dot, Settings, Globe, Headset } from "lucide-react";
+import { Settings, Globe, Headset } from "lucide-react";
 import { AccordionItem } from "./AccordionItem";
 import ServiceAccordion from "@/components/ServiceAccordion";
 import { motion } from "framer-motion";
@@ -10,7 +10,6 @@ import {
   coreServices,
   industryDetails,
   whyChooseUsCards,
-  customerExperienceOverview,
   emergencyHelplineService,
   digitalTransformationOverview,
   digitalTransformationServices,
@@ -68,13 +67,13 @@ export default function ServicesPage() {
       {/* --- Hero Section --- */}
       <section className="relative pt-20 pb-8 overflow-hidden">
         <motion.div
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+          className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 xl:px-24 text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeInUp}
         >
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-gray-900 mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-4xl font-extrabold tracking-tight text-gray-900 mb-6">
             <span className="block mb-2">Transforming Customer Experience</span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
               Across the Globe
@@ -88,8 +87,8 @@ export default function ServicesPage() {
       </section>
 
       {/* --- Main Services Overview --- */}
-      <section className="py-20 px-4 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-14 xl:py-16 px-6 xl:px-12 bg-gradient-to-br from-gray-50 to-white">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             className="text-center mb-16"
             initial="hidden"
@@ -100,7 +99,7 @@ export default function ServicesPage() {
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-4">
               Our Core Strengths
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-6">
               What Sets Us Apart
             </h2>
           </motion.div>
@@ -182,7 +181,7 @@ export default function ServicesPage() {
       </section>
 
       {/* --- Interactive Services Grid --- */}
-      <section className="relative w-full py-24 px-4 overflow-hidden bg-white">
+      <section className="relative w-full py-14 xl:py-16 px-6 xl:px-12 overflow-hidden bg-white">
         {/* SVG Gradient Definition for Icons */}
         <svg width="0" height="0" className="absolute block">
           <defs>
@@ -199,7 +198,7 @@ export default function ServicesPage() {
           </defs>
         </svg>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
             className="text-center mb-12"
             initial="hidden"
@@ -207,7 +206,7 @@ export default function ServicesPage() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4">
               Core Services
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto">
@@ -256,8 +255,8 @@ export default function ServicesPage() {
       </section>
 
       {/* --- Emergency Helpline Section --- */}
-      <section className="py-20 px-4 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-14 xl:py-16 px-6 xl:px-12 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+        <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
             <motion.div
@@ -269,7 +268,7 @@ export default function ServicesPage() {
               <span className="inline-block px-4 py-2 rounded-full bg-red-100 text-red-600 text-sm font-semibold tracking-wide mb-6">
                 Emergency Services
               </span>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-6">
                 {emergencyHelplineService.title}
               </h2>
               <p className="text-gray-600 leading-relaxed mb-8">
@@ -316,7 +315,7 @@ export default function ServicesPage() {
       </section>
 
       {/* --- Digital Transformation Section --- */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-14 xl:py-16 px-6 xl:px-12 bg-white">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <motion.div
@@ -329,7 +328,7 @@ export default function ServicesPage() {
             <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-semibold tracking-wide mb-4">
               Digital Solutions
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4">
               {digitalTransformationOverview.title}
             </h2>
             <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary font-bold mb-4">
@@ -340,22 +339,23 @@ export default function ServicesPage() {
             </p>
           </motion.div>
 
-          {/* Hero Image */}
+          {/* Hero Video */}
           <div className="mb-16">
-            <div className="rounded-2xl overflow-hidden shadow-2xl max-w-4xl mx-auto">
-              <Image
-                src="/images/services/digital-transformation.png"
-                alt="Digital Transformation with AI"
-                width={1200}
-                height={600}
-                className="w-full h-auto object-cover"
+            <div className="rounded-2xl overflow-hidden shadow-2xl mx-auto bg-black">
+              <video
+                src="/videos/services/digital.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-auto object-contain"
               />
             </div>
           </div>
 
           {/* Services Accordion */}
           <div className="mb-12">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h3 className="text-xl md:text-2xl xl:text-2xl font-bold text-gray-900 mb-8 text-center">
               Our Digital Transformation Services
             </h3>
             <ServiceAccordion services={digitalTransformationServices} />
@@ -374,7 +374,7 @@ export default function ServicesPage() {
       </section>
 
       {/* --- Detailed Expandable Sections (Industry Specific) --- */}
-      <section className="py-20 px-6 lg:px-8 max-w-7xl mx-auto bg-gray-50 rounded-3xl mb-20">
+      <section className="py-14 xl:py-16 px-6 lg:px-16 max-w-6xl mx-auto bg-gray-50 rounded-3xl mb-20">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16 items-start">
           {/* Left Column */}
           <motion.div
@@ -387,7 +387,7 @@ export default function ServicesPage() {
             <span className="inline-block px-4 py-2 rounded-full bg-[#594ad2]/10 text-[#594ad2] text-sm font-semibold tracking-wide mb-8">
               Specialized Sectors
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold mb-6 text-gray-900">
               Industry <span className="text-[#594ad2]">Expertise</span>
             </h2>
             <p className="text-lg text-gray-500 leading-relaxed font-medium">
@@ -419,8 +419,8 @@ export default function ServicesPage() {
       </section>
 
       {/* --- Why Choose Us Section --- */}
-      <section className="w-full py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full py-14 xl:py-16 px-6 xl:px-12 bg-white">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             className="text-center mb-16"
             initial="hidden"
@@ -428,7 +428,7 @@ export default function ServicesPage() {
             viewport={{ once: true, amount: 0.3 }}
             variants={fadeInUp}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
               Why Choose Us
             </h2>
             <p className="text-gray-500 text-lg md:text-xl font-medium max-w-2xl mx-auto">
@@ -470,7 +470,7 @@ export default function ServicesPage() {
       </section>
 
       {/* --- CTA Footer --- */}
-      <section className="w-full py-20 px-4 flex justify-center items-center bg-white">
+      <section className="w-full py-14 xl:py-16 px-6 xl:px-12 flex justify-center items-center bg-white">
         <motion.div
           className="max-w-5xl w-full relative rounded-3xl p-8 lg:p-12 flex flex-col items-center text-center bg-gradient-to-br from-[#BC55D8] via-[#B06CE5] to-[#9FD6FF] shadow-2xl"
           initial="hidden"

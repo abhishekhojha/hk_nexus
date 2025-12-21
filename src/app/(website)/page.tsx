@@ -6,6 +6,8 @@ import ClientTestimonials from "@/components/ClientTestimonials";
 import BlogSection from "@/components/BlogSection";
 import FAQSection from "@/components/AccordionItem";
 import NewsletterSection from "@/components/NewsletterSection";
+import QuickConnectButton from "@/components/QuickConnectButton";
+import ScrollToTop from "@/components/ScrollToTop";
 import { Users, Globe, Briefcase, Building2 } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
 
@@ -38,11 +40,11 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900">
+    <div className="min-h-screen bg-white font-sans text-gray-900 ">
       <main>
         <Hero />
-        <section className="mb-30 py-16 px-6 bg-gradient-to-r from-primary via-[#7a6ce4] to-secondary text-white shadow-xl">
-          <div className="max-w-7xl mx-auto">
+        <section className="mb-30 py-10 xl:py-12 px-8 xl:px-16 bg-gradient-to-r from-primary via-[#7a6ce4] to-secondary text-white shadow-xl">
+          <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {stats.map((stat, index) => (
                 <div
@@ -69,6 +71,12 @@ export default function Home() {
         <FAQSection />
         <NewsletterSection />
       </main>
+
+      {/* Quick Connect Button */}
+      <QuickConnectButton />
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 }

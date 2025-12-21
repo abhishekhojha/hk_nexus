@@ -46,13 +46,14 @@ export default function Navbar() {
                   style={{
                     width: "210px",
                     height: "75px",
+                    borderRadius: "20px",
+                    overflow: "hidden",
                   }}
                 >
                   <Image
                     src="/logo.png"
                     alt="Logo"
                     fill
-                    className="object-contain"
                     onError={(e) => {
                       e.currentTarget.style.display = "none";
                     }}

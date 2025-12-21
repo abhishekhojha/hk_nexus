@@ -42,8 +42,8 @@ const NewsletterSection = () => {
       >
         {/* Left Content */}
         <div className="w-full lg:w-1/2 text-white space-y-4">
-          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold leading-[1.15] tracking-tight">
-            Stay Updated With HK Nexus
+          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-3xl font-bold leading-[1.15] tracking-tight">
+            Stay Updated with Industry Insights
           </h2>
           <p className="text-white/90 text-lg font-medium max-w-md">
             Insights that elevate your customer experience strategy.

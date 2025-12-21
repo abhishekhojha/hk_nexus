@@ -51,8 +51,8 @@ const BlogSection = ({ title }: { title?: boolean }) => {
         {title && (
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
             <div className="max-w-2xl text-left">
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-                Blogs
+              <h2 className="text-4xl md:text-4xl xl:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+                Latest Insights
               </h2>
               <p className="text-gray-500 text-lg leading-relaxed">
                 Expert tips, industry trends, and actionable strategies to grow
@@ -119,7 +119,7 @@ const BlogSection = ({ title }: { title?: boolean }) => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-primary transition-colors">
+                    <h3 className="text-2xl lg:text-2xl xl:text-2xl font-bold text-gray-900 mb-4 leading-tight group-hover:text-primary transition-colors">
                       {post.title}
                     </h3>
 

@@ -94,9 +94,9 @@ export default function ContactPage() {
     <div className="min-h-screen font-sans text-gray-900 flex flex-col">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-gray-50 via-white to-accent/10 py-20 px-6">
-          <div className="max-w-7xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6">
+        <section className="bg-gradient-to-br from-gray-50 via-white to-accent/10 py-14 xl:py-16 px-6 xl:px-12">
+          <div className="max-w-6xl mx-auto text-center">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-4xl font-extrabold tracking-tight text-gray-900 mb-6">
               Get in{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
                 Touch
@@ -110,12 +110,12 @@ export default function ContactPage() {
         </section>
 
         {/* Contact Content */}
-        <section className="py-20 px-6">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <section className="py-14 xl:py-16 px-6 xl:px-12">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Information */}
             <div className="space-y-12">
               <div>
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+                <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-6">
                   Contact Information
                 </h2>
                 <p className="text-gray-600 text-lg mb-8">
@@ -295,10 +295,10 @@ export default function ContactPage() {
         </section>
 
         {/* Department Contacts */}
-        <section className="py-20 px-6 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-14 xl:py-16 px-6 xl:px-12 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4">
                 Connect with Specific Departments
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
@@ -342,8 +342,8 @@ export default function ContactPage() {
         </section>
 
         {/* Map Section */}
-        <section className="py-20 px-6">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-14 xl:py-16 px-6 xl:px-12 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
             <div className="bg-gray-200 rounded-3xl overflow-hidden h-[400px] relative shadow-lg border-4 border-white">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d222781.96901770242!2d77.2410785894995!3d23.199639466317002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c428f8fd68fbd%3A0x2155716d572d4f8!2sBhopal%2C%20Madhya%20Pradesh!5e1!3m2!1sen!2sin!4v1764184694315!5m2!1sen!2sin"

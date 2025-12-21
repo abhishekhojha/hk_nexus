@@ -103,9 +103,9 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white font-sans text-gray-900 flex flex-col">
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-gray-50 via-white to-accent/10 py-20 px-6">
-          <div className="max-w-7xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6">
+        <section className="bg-gradient-to-br from-gray-50 via-white to-accent/10 py-14 xl:py-16 px-6 xl:px-12">
+          <div className="max-w-6xl mx-auto text-center">
+            <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-4xl font-extrabold tracking-tight text-gray-900 mb-6">
               About{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
                 HK Nexus
@@ -119,8 +119,8 @@ export default function AboutPage() {
         </section>
 
         {/* Our Story Section */}
-        <section className="pb-20 px-6">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <section className="pb-14 xl:pb-16 px-6 xl:px-12">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative h-[400px] bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl overflow-hidden shadow-inner">
               {/* Placeholder for Story Image */}
               <div className="absolute inset-0 flex items-center justify-center text-gray-400">
@@ -129,7 +129,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-6">
                 Our Story
               </h2>
               <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
@@ -168,8 +168,8 @@ export default function AboutPage() {
         </section>
 
         {/* Stats Section */}
-        <section className="py-16 px-6 bg-gradient-to-r from-primary via-[#7a6ce4] to-secondary text-white shadow-xl">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-10 xl:py-12 px-8 xl:px-16 bg-gradient-to-r from-primary via-[#7a6ce4] to-secondary text-white shadow-xl">
+          <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {stats.map((stat, index) => (
                 <div
@@ -190,10 +190,10 @@ export default function AboutPage() {
         </section>
 
         {/* Our Values Section */}
-        <section className="py-20 px-6 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-14 xl:py-16 px-6 xl:px-12 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4">
                 Our Core Values
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
@@ -225,10 +225,10 @@ export default function AboutPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20 px-6">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-14 xl:py-16 px-6 xl:px-12">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4">
                 What Our Clients Say
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
@@ -264,10 +264,10 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section */}
-        <section className="py-20 px-6 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
+        <section className="py-14 xl:py-16 px-6 xl:px-12 bg-gray-50">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4">
                 Meet Our Team
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
@@ -295,13 +295,13 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 px-6 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
+        <section className="py-14 xl:py-16 px-6 xl:px-12 bg-gradient-to-br from-primary to-secondary text-white relative overflow-hidden">
           {/* Decorative circles */}
           <div className="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/20 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"></div>
 
           <div className="max-w-4xl mx-auto text-center relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold mb-6">
               Ready to work with us?
             </h2>
             <p className="text-white/90 text-xl mb-10 max-w-2xl mx-auto">

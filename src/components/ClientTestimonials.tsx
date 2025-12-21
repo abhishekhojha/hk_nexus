@@ -48,8 +48,8 @@ const ClientTestimonials = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-            What Global Clients Think About HK Nexus
+          <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
+            What Our Clients Say
           </h2>
           <p className="text-gray-500 text-lg md:text-xl font-medium max-w-3xl mx-auto mb-2">
             Trusted. Scalable. Human-First.
@@ -69,7 +69,7 @@ const ClientTestimonials = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 px-12">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
@@ -93,7 +93,7 @@ const ClientTestimonials = () => {
         </div>
 
         {/* Why Clients Stay Section */}
-        <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 md:p-12 text-white mb-12">
+        <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 md:p-12 text-white mb-12 mx-12">
           <h3 className="text-2xl md:text-3xl font-bold mb-8 text-center">
             Why Clients Stay
           </h3>
@@ -110,7 +110,7 @@ const ClientTestimonials = () => {
         </div>
 
         {/* Closing Statement */}
-        <div className="text-center bg-gray-50 rounded-xl p-8 border border-gray-100">
+        <div className="text-center bg-gray-50 rounded-xl p-8 border border-gray-100 mx-12">
           <h4 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">
             In One Line
           </h4>

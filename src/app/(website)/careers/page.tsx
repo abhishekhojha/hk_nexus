@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
+import Image from "next/image";
 import { MapPin, ArrowRight, Upload, Dot, X, FileText } from "lucide-react";
 import { toast } from "sonner";
 import { benefits, jobOpenings, lifeAtCompany, locationData } from "./data";
@@ -177,8 +178,8 @@ export default function CareersPage() {
     <main className="min-h-screen bg-white">
       {/* --- Hero Section --- */}
       <section className="relative pt-20 pb-16 lg:pb-24 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold tracking-tight text-gray-900 mb-6">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-16 xl:px-24 text-center">
+          <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-4xl font-extrabold tracking-tight text-gray-900 mb-6">
             <span>Build Your</span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
               Career With Us
@@ -210,10 +211,10 @@ export default function CareersPage() {
       </section>
 
       {/* --- Why Work With Us Section --- */}
-      <section className="w-full py-20 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full py-14 xl:py-16 px-6 xl:px-12 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
               Why Work With Us?
             </h2>
             <p className="text-gray-500 text-lg font-medium max-w-2xl mx-auto">
@@ -235,7 +236,7 @@ export default function CareersPage() {
               muted
               playsInline
             >
-              <source src="/videos/home_video.mp4" type="video/mp4" />
+              <source src="/videos/careers/hero.mp4" type="video/mp4" />
             </video>
 
             {/* Overlay (Darken) */}
@@ -302,17 +303,20 @@ export default function CareersPage() {
 
             {/* HTML5 Video Player */}
             <video className="w-full h-full" controls autoPlay playsInline>
-              <source src="/videos/home_video.mp4" type="video/mp4" />
+              <source src="/videos/careers/hero.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
         </div>
       )}
       {/* --- Current Openings Section --- */}
-      <section id="openings" className="w-full py-20 px-4 bg-white">
-        <div className="max-w-7xl mx-auto">
+      <section
+        id="openings"
+        className="w-full py-14 xl:py-16 px-6 xl:px-12 bg-white"
+      >
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
               Current Openings
             </h2>
             <p className="text-gray-500 text-lg font-medium max-w-2xl mx-auto">
@@ -473,10 +477,10 @@ export default function CareersPage() {
       </section>
 
       {/* --- Life at Our Company --- */}
-      <section className="w-full py-20 px-4 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full py-14 xl:py-16 px-6 xl:px-12 bg-gray-50">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+            <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
               Life at HK Nexus
             </h2>
             <p className="text-gray-500 text-lg font-medium max-w-2xl mx-auto">
@@ -507,182 +511,200 @@ export default function CareersPage() {
       </section>
 
       {/* --- Application Form Section --- */}
-      <section id="apply-form" className="w-full py-20 px-4 bg-white">
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
-            <div className="bg-[#594ad2] p-4 text-center">
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                Apply Now
-              </h2>
-              <p className="text-white/80">Start your journey with us today.</p>
+      <section
+        id="apply-form"
+        className="w-full py-14 xl:py-16 px-6 xl:px-12 bg-white"
+      >
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            {/* Left: Image */}
+            <div className="relative w-full aspect-square rounded-xl overflow-hidden shadow-xl">
+              <Image
+                src="/images/careers/apply_form.jpg"
+                alt="Join Our Team"
+                fill
+                className="object-cover"
+              />
             </div>
 
-            <div className="p-6 md:p-12">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="fullName"
-                      className="text-sm font-medium text-gray-700"
-                    >
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="fullName"
-                      name="fullName"
-                      value={formData.fullName}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all"
-                      placeholder="John Doe"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="email"
-                      className="text-sm font-medium text-gray-700"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all"
-                      placeholder="john@example.com"
-                    />
-                  </div>
-                </div>
+            {/* Right: Form */}
+            <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden">
+              <div className="bg-[#594ad2] p-4 text-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                  Apply Now
+                </h2>
+                <p className="text-white/80">
+                  Start your journey with us today.
+                </p>
+              </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="phone"
-                      className="text-sm font-medium text-gray-700"
-                    >
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all"
-                      placeholder="+1 (555) 000-0000"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="position"
-                      className="text-sm font-medium text-gray-700"
-                    >
-                      Position Applying For
-                    </label>
-                    <select
-                      id="position"
-                      name="position"
-                      value={formData.position}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
-                    >
-                      <option value="">Select a position</option>
-                      {jobOpenings.map((job, index) => (
-                        <option key={index} value={job.title}>
-                          {job.title}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">
-                    Resume / CV *
-                  </label>
-                  {!resumeFile ? (
-                    <div
-                      onClick={() => fileInputRef.current?.click()}
-                      onDragOver={handleDragOver}
-                      onDragLeave={handleDragLeave}
-                      onDrop={handleDrop}
-                      className={`border-2 border-dashed rounded-lg p-8 text-center transition-all cursor-pointer ${
-                        isDragging
-                          ? "border-[#594ad2] bg-[#594ad2]/5"
-                          : "border-gray-300 hover:bg-gray-50"
-                      }`}
-                    >
-                      <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
-                      <p className="text-sm text-gray-500">
-                        Click to upload or drag and drop
-                      </p>
-                      <p className="text-xs text-gray-400 mt-1">
-                        PDF, DOC, DOCX up to 3MB
-                      </p>
+              <div className="p-6 md:p-12">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="fullName"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Full Name
+                      </label>
                       <input
-                        ref={fileInputRef}
-                        type="file"
-                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        onChange={handleFileChange}
-                        className="hidden"
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all"
+                        placeholder="John Doe"
                       />
                     </div>
-                  ) : (
-                    <div className="border-2 border-[#594ad2] bg-[#594ad2]/5 rounded-lg p-4 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <FileText className="w-8 h-8 text-[#594ad2]" />
-                        <div>
-                          <p className="text-sm font-medium text-gray-900">
-                            {resumeFile.name}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {(resumeFile.size / 1024).toFixed(2)} KB
-                          </p>
-                        </div>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={removeFile}
-                        className="p-1 hover:bg-red-100 rounded-full transition-colors"
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="email"
+                        className="text-sm font-medium text-gray-700"
                       >
-                        <X className="w-5 h-5 text-red-600" />
-                      </button>
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all"
+                        placeholder="john@example.com"
+                      />
                     </div>
-                  )}
-                </div>
+                  </div>
 
-                <div className="space-y-2">
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-medium text-gray-700"
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="phone"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all"
+                        placeholder="+1 (555) 000-0000"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="position"
+                        className="text-sm font-medium text-gray-700"
+                      >
+                        Position Applying For
+                      </label>
+                      <select
+                        id="position"
+                        name="position"
+                        value={formData.position}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
+                      >
+                        <option value="">Select a position</option>
+                        {jobOpenings.map((job, index) => (
+                          <option key={index} value={job.title}>
+                            {job.title}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-gray-700">
+                      Resume / CV *
+                    </label>
+                    {!resumeFile ? (
+                      <div
+                        onClick={() => fileInputRef.current?.click()}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
+                        className={`border-2 border-dashed rounded-lg p-8 text-center transition-all cursor-pointer ${
+                          isDragging
+                            ? "border-[#594ad2] bg-[#594ad2]/5"
+                            : "border-gray-300 hover:bg-gray-50"
+                        }`}
+                      >
+                        <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                        <p className="text-sm text-gray-500">
+                          Click to upload or drag and drop
+                        </p>
+                        <p className="text-xs text-gray-400 mt-1">
+                          PDF, DOC, DOCX up to 3MB
+                        </p>
+                        <input
+                          ref={fileInputRef}
+                          type="file"
+                          accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                          onChange={handleFileChange}
+                          className="hidden"
+                        />
+                      </div>
+                    ) : (
+                      <div className="border-2 border-[#594ad2] bg-[#594ad2]/5 rounded-lg p-4 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <FileText className="w-8 h-8 text-[#594ad2]" />
+                          <div>
+                            <p className="text-sm font-medium text-gray-900">
+                              {resumeFile.name}
+                            </p>
+                            <p className="text-xs text-gray-500">
+                              {(resumeFile.size / 1024).toFixed(2)} KB
+                            </p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={removeFile}
+                          className="p-1 hover:bg-red-100 rounded-full transition-colors"
+                        >
+                          <X className="w-5 h-5 text-red-600" />
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="message"
+                      className="text-sm font-medium text-gray-700"
+                    >
+                      Message (Optional)
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      rows={4}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all resize-none"
+                      placeholder="Tell us why you're a great fit..."
+                    ></textarea>
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full bg-black text-white px-8 py-4 rounded-lg text-base font-bold hover:bg-gray-800 transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                   >
-                    Message (Optional)
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all resize-none"
-                    placeholder="Tell us why you're a great fit..."
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-black text-white px-8 py-4 rounded-lg text-base font-bold hover:bg-gray-800 transition-colors duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
-                >
-                  {isSubmitting ? "Submitting..." : "Submit Application"}
-                </button>
-              </form>
+                    {isSubmitting ? "Submitting..." : "Submit Application"}
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </div>

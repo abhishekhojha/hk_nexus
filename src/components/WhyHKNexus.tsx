@@ -1,17 +1,16 @@
 "use client";
-import React, { useState } from "react";
-import {
-  CheckCircle2,
-  Users,
-  DollarSign,
-  Globe,
-  Shield,
-  X,
-} from "lucide-react";
+import React, { useRef, useEffect } from "react";
+import { CheckCircle2, Users, DollarSign, Globe, Shield } from "lucide-react";
 
 const WhyHKNexus = () => {
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const videoId = "7dQYLzW-7yU"; // The ID from your URL
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Set video playback rate
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.7;
+    }
+  }, []);
 
   const cards = [
     {
@@ -54,11 +53,11 @@ const WhyHKNexus = () => {
   ];
 
   return (
-    <section className="w-full py-20 px-4 bg-gray-100">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full py-14 xl:py-16 px-6 xl:px-12 bg-gray-100">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
+          <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4 tracking-tight">
             Why HK Nexus
           </h2>
           <p className="text-gray-500 text-lg md:text-xl font-medium max-w-4xl mx-auto">
@@ -76,75 +75,44 @@ const WhyHKNexus = () => {
 
         {/* Section Title */}
         <div className="text-center mb-10">
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+          <h3 className="text-xl md:text-xl xl:text-2xl font-bold text-gray-900 mb-2">
             What Clients Appreciate About HK Nexus
           </h3>
         </div>
 
-        {/* --- Video Thumbnail Section --- */}
-        <div
-          className="relative w-full h-[300px] md:h-[450px] lg:h-[500px] rounded-xl overflow-hidden shadow-sm mb-12 group cursor-pointer"
-          onClick={() => setIsVideoOpen(true)}
-        >
-          {/* Dynamic YouTube Thumbnail */}
-          <img
-            src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
-            alt="Video Thumbnail"
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+        {/* Video and Images Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
+          {/* Left: Vertical Video */}
+          <div className="relative w-full h-[500px] lg:h-[600px] rounded-xl overflow-hidden shadow-lg bg-black">
+            <video
+              ref={videoRef}
+              src="/videos/home/why_hknexus.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-contain"
+            />
+          </div>
 
-          {/* Overlay (Darken) */}
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
-
-          {/* Play Button */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="w-20 h-20 rounded-full border-[3px] border-white flex items-center justify-center backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 shadow-lg">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="white"
-                className="ml-1"
-              >
-                <path d="M5 3l14 9-14 9V3z" />
-              </svg>
+          {/* Right: Two Horizontal Images Stacked */}
+          <div className="flex flex-col gap-6">
+            <div className="relative w-full h-[242px] lg:h-[291px] rounded-xl overflow-hidden shadow-lg">
+              <img
+                src="/images/home/why_1.jpg"
+                alt="Customer Service Excellence"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="relative w-full h-[242px] lg:h-[291px] rounded-xl overflow-hidden shadow-lg">
+              <img
+                src="/images/home/why_2.jpg"
+                alt="Intelligence Orchestration"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
-
-        {/* --- Video Popup Modal --- */}
-        {isVideoOpen && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 transition-opacity duration-300"
-            onClick={() => setIsVideoOpen(false)} // Close when clicking background
-          >
-            <div
-              className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl animate-in fade-in zoom-in duration-300"
-              onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside video container
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setIsVideoOpen(false)}
-                className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 rounded-full text-white transition-colors"
-              >
-                <X className="w-6 h-6" />
-              </button>
-
-              {/* YouTube Iframe with Autoplay */}
-              <iframe
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            </div>
-          </div>
-        )}
 
         {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
