@@ -125,7 +125,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-8">
-                <div className="flex items-start gap-4 group">
+                {/* <div className="flex items-start gap-4 group">
                   <div className="bg-gradient-to-br from-primary/10 to-secondary/10 p-3 rounded-full text-primary group-hover:scale-110 transition-transform duration-300">
                     <Phone className="w-6 h-6" />
                   </div>
@@ -138,7 +138,7 @@ export default function ContactPage() {
                       Mon-Fri 9am-6pm
                     </p>
                   </div>
-                </div>
+                </div> */}
 
                 <div className="flex items-start gap-4 group">
                   <div className="bg-gradient-to-br from-primary/10 to-secondary/10 p-3 rounded-full text-primary group-hover:scale-110 transition-transform duration-300">
@@ -327,13 +327,13 @@ export default function ContactPage() {
                       <Mail className="w-4 h-4 text-secondary" />
                       {dept.email}
                     </a>
-                    <a
+                    {/* <a
                       href={`tel:${dept.phone}`}
                       className="flex items-center gap-3 text-gray-600 hover:text-primary transition-colors font-medium"
                     >
                       <Phone className="w-4 h-4 text-secondary" />
                       {dept.phone}
-                    </a>
+                    </a> */}
                   </div>
                 </div>
               ))}

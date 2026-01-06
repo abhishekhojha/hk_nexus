@@ -21,7 +21,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-24">
           {/* Column 1: Brand & Socials (Spans 4 columns) */}
           <div className="lg:col-span-4 flex flex-col items-start">
-            <div className="relative w-48 h-24">
+            <div
+              className="relative w-48 h-24"
+              style={{
+                width: "210px",
+                height: "75px",
+                borderRadius: "20px",
+                overflow: "hidden",
+              }}
+            >
               <Image
                 src="/logo.png"
                 alt="HK Nexus Global"
@@ -143,9 +151,9 @@ const Footer = () => {
               Contact & Support
             </h3>
             <ul className="space-y-5 mb-10">
-              <li className="text-gray-600 font-medium text-[15px] hover:text-gray-900 cursor-default">
+              {/* <li className="text-gray-600 font-medium text-[15px] hover:text-gray-900 cursor-default">
                 1-800-123-4567
-              </li>
+              </li> */}
               <li className="text-gray-600 font-medium text-[15px] hover:text-gray-900 cursor-pointer transition-colors">
                 info@hknexusglobal.com
               </li>

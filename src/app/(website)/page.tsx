@@ -32,7 +32,7 @@ export default function Home() {
       icon: <Briefcase className="w-8 h-8 text-white" />,
     },
     {
-      value: 10,
+      value: 5,
       suffix: "+",
       label: "Clients",
       icon: <Building2 className="w-8 h-8 text-white" />,
