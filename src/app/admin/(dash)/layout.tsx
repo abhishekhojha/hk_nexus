@@ -55,6 +55,7 @@ export default function DashLayout({
     { href: "/admin/newsletter", label: "Newsletter", icon: Mail },
     { href: "/admin/contact", label: "Contact Messages", icon: MessageSquare },
     { href: "/admin/careers", label: "Job Applications", icon: Briefcase },
+    { href: "/admin/job-openings", label: "Job Openings", icon: Briefcase },
     // { href: "#", label: "Settings", icon: Settings },
   ];
 

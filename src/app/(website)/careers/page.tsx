@@ -1,9 +1,37 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { MapPin, ArrowRight, Upload, Dot, X, FileText } from "lucide-react";
+import {
+  MapPin,
+  ArrowRight,
+  Upload,
+  X,
+  FileText,
+  Building2,
+  Loader2,
+} from "lucide-react";
 import { toast } from "sonner";
-import { benefits, jobOpenings, lifeAtCompany, locationData } from "./data";
+import { benefits, lifeAtCompany } from "./data";
+
+interface JobOpening {
+  _id: string;
+  title: string;
+  type: string;
+  workMode: string;
+  summary: string;
+  responsibilities: string[];
+  requirements: string[];
+  city: string;
+  state: string;
+  country: string;
+  isActive: boolean;
+}
+
+interface LocationData {
+  countries: string[];
+  states: string[];
+  cities: string[];
+}
 
 export default function CareersPage() {
   const [formData, setFormData] = useState({
@@ -18,8 +46,103 @@ export default function CareersPage() {
   const [isDragging, setIsDragging] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Job openings state
+  const [jobOpenings, setJobOpenings] = useState<JobOpening[]>([]);
+  const [filteredJobs, setFilteredJobs] = useState<JobOpening[]>([]);
+  const [locations, setLocations] = useState<LocationData>({
+    countries: [],
+    states: [],
+    cities: [],
+  });
+  const [loading, setLoading] = useState(true);
+
+  // Filter states
+  const [selectedCountry, setSelectedCountry] = useState("All Countries");
   const [selectedState, setSelectedState] = useState("All States");
   const [selectedCity, setSelectedCity] = useState("All Cities");
+
+  // Fetch job openings on mount
+  useEffect(() => {
+    fetchJobOpenings();
+  }, []);
+
+  // Filter jobs when selection changes
+  useEffect(() => {
+    filterJobs();
+  }, [selectedCountry, selectedState, selectedCity, jobOpenings]);
+
+  const fetchJobOpenings = async () => {
+    try {
+      const res = await fetch("/api/job-openings");
+      if (res.ok) {
+        const data = await res.json();
+        setJobOpenings(data.jobOpenings);
+        setLocations(data.locations);
+        setFilteredJobs(data.jobOpenings);
+      }
+    } catch (error) {
+      console.error("Failed to fetch job openings:", error);
+      toast.error("Failed to load job openings");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filterJobs = () => {
+    let filtered = [...jobOpenings];
+
+    if (selectedCountry !== "All Countries") {
+      filtered = filtered.filter((job) => job.country === selectedCountry);
+    }
+    if (selectedState !== "All States") {
+      filtered = filtered.filter((job) => job.state === selectedState);
+    }
+    if (selectedCity !== "All Cities") {
+      filtered = filtered.filter((job) => job.city === selectedCity);
+    }
+
+    setFilteredJobs(filtered);
+  };
+
+  // Get available states based on selected country
+  const getAvailableStates = () => {
+    if (selectedCountry === "All Countries") {
+      return locations.states;
+    }
+    const statesInCountry = jobOpenings
+      .filter((job) => job.country === selectedCountry)
+      .map((job) => job.state);
+    return [...new Set(statesInCountry)];
+  };
+
+  // Get available cities based on selected state
+  const getAvailableCities = () => {
+    if (selectedState === "All States") {
+      return locations.cities;
+    }
+    const citiesInState = jobOpenings
+      .filter((job) => job.state === selectedState)
+      .map((job) => job.city);
+    return [...new Set(citiesInState)];
+  };
+
+  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const country = e.target.value;
+    setSelectedCountry(country);
+    setSelectedState("All States");
+    setSelectedCity("All Cities");
+  };
+
+  const handleStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const state = e.target.value;
+    setSelectedState(state);
+    setSelectedCity("All Cities");
+  };
+
+  const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedCity(e.target.value);
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -140,38 +263,6 @@ export default function CareersPage() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newState = e.target.value;
-    setSelectedState(newState);
-    // If "All States" is selected, set city to "All Cities"
-    if (newState === "All States") {
-      setSelectedCity("All Cities");
-    } else {
-      // Auto-select first city of the new state
-      const state = locationData.states.find((s) => s.name === newState);
-      if (state && state.cities.length > 0) {
-        setSelectedCity(state.cities[0]);
-      }
-    }
-  };
-
-  const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedCity(e.target.value);
-  };
-
-  const getCurrentCities = () => {
-    if (selectedState === "All States") {
-      return ["All Cities"];
-    }
-    const state = locationData.states.find((s) => s.name === selectedState);
-    return state ? ["All Cities", ...state.cities] : ["All Cities"];
-  };
-
-  const handleViewBhopalOpenings = () => {
-    setSelectedState("Madhya Pradesh");
-    setSelectedCity("Bhopal");
   };
 
   return (
@@ -309,6 +400,7 @@ export default function CareersPage() {
           </div>
         </div>
       )}
+
       {/* --- Current Openings Section --- */}
       <section
         id="openings"
@@ -333,11 +425,16 @@ export default function CareersPage() {
                   Country
                 </label>
                 <select
-                  disabled
-                  value={locationData.country}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-100 text-gray-500 cursor-not-allowed outline-none"
+                  value={selectedCountry}
+                  onChange={handleCountryChange}
+                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
                 >
-                  <option>{locationData.country}</option>
+                  <option value="All Countries">All Countries</option>
+                  {locations.countries.map((country) => (
+                    <option key={country} value={country}>
+                      {country}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -352,9 +449,9 @@ export default function CareersPage() {
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
                 >
                   <option value="All States">All States</option>
-                  {locationData.states.map((state) => (
-                    <option key={state.name} value={state.name}>
-                      {state.name}
+                  {getAvailableStates().map((state) => (
+                    <option key={state} value={state}>
+                      {state}
                     </option>
                   ))}
                 </select>
@@ -370,7 +467,8 @@ export default function CareersPage() {
                   onChange={handleCityChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
                 >
-                  {getCurrentCities().map((city) => (
+                  <option value="All Cities">All Cities</option>
+                  {getAvailableCities().map((city) => (
                     <option key={city} value={city}>
                       {city}
                     </option>
@@ -380,23 +478,28 @@ export default function CareersPage() {
             </div>
           </div>
 
-          {/* Conditional Rendering: Jobs or Coming Soon */}
-          {selectedState === "All States" ||
-          selectedCity === "All Cities" ||
-          selectedCity === "Bhopal" ? (
+          {/* Loading State */}
+          {loading ? (
+            <div className="flex items-center justify-center py-16">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          ) : filteredJobs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {jobOpenings.map((job, index) => (
+              {filteredJobs.map((job) => (
                 <div
-                  key={index}
+                  key={job._id}
                   className="bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-gray-100 flex flex-col overflow-hidden hover:shadow-xl transition-shadow duration-300 group"
                 >
                   <div className="p-8 flex-grow flex flex-col items-start">
-                    <div className="flex items-center gap-2 mb-4">
+                    <div className="flex items-center gap-2 mb-4 flex-wrap">
                       <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-semibold rounded-full">
                         {job.type}
                       </span>
+                      <span className="px-3 py-1 bg-purple-50 text-purple-600 text-xs font-semibold rounded-full flex items-center gap-1">
+                        <Building2 className="w-3 h-3" /> {job.workMode}
+                      </span>
                       <span className="px-3 py-1 bg-gray-50 text-gray-600 text-xs font-semibold rounded-full flex items-center gap-1">
-                        <MapPin className="w-3 h-3" /> {job.location}
+                        <MapPin className="w-3 h-3" /> {job.city}
                       </span>
                     </div>
 
@@ -457,19 +560,34 @@ export default function CareersPage() {
               <div className="max-w-2xl mx-auto">
                 <MapPin className="w-16 h-16 text-gray-300 mx-auto mb-6" />
                 <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                  Openings Coming Soon to {selectedCity}
+                  {jobOpenings.length === 0
+                    ? "No Openings Available"
+                    : `No Openings in ${
+                        selectedCity !== "All Cities"
+                          ? selectedCity
+                          : selectedState !== "All States"
+                          ? selectedState
+                          : selectedCountry
+                      }`}
                 </h3>
                 <p className="text-gray-500 text-lg mb-8">
-                  We're expanding! Check back soon for opportunities in your
-                  area.
+                  {jobOpenings.length === 0
+                    ? "Check back soon for new opportunities!"
+                    : "Try adjusting your filters or check back soon for new opportunities in your area."}
                 </p>
-                <button
-                  onClick={handleViewBhopalOpenings}
-                  className="bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity shadow-lg inline-flex items-center gap-2"
-                >
-                  View Current Openings
-                  <ArrowRight className="w-5 h-5" />
-                </button>
+                {jobOpenings.length > 0 && (
+                  <button
+                    onClick={() => {
+                      setSelectedCountry("All Countries");
+                      setSelectedState("All States");
+                      setSelectedCity("All Cities");
+                    }}
+                    className="bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity shadow-lg inline-flex items-center gap-2"
+                  >
+                    View All Openings
+                    <ArrowRight className="w-5 h-5" />
+                  </button>
+                )}
               </div>
             </div>
           )}
@@ -614,8 +732,8 @@ export default function CareersPage() {
                         className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
                       >
                         <option value="">Select a position</option>
-                        {jobOpenings.map((job, index) => (
-                          <option key={index} value={job.title}>
+                        {jobOpenings.map((job) => (
+                          <option key={job._id} value={job.title}>
                             {job.title}
                           </option>
                         ))}
