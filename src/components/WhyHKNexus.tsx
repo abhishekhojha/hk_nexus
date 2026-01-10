@@ -19,7 +19,11 @@ const WhyHKNexus = () => {
       description:
         "Clients trust us to deliver on time, every time — with clear SLAs, real accountability, and zero guesswork.",
       icon: (
-        <CheckCircle2 className="w-6 h-6 text-gray-700" strokeWidth={1.5} />
+        <CheckCircle2
+          className="w-6 h-6 text-gray-700"
+          strokeWidth={1.5}
+          style={{ stroke: "url(#icon-gradient)" }}
+        />
       ),
     },
     {
@@ -27,28 +31,52 @@ const WhyHKNexus = () => {
       title: "Skilled, Well-Trained Teams",
       description:
         "Our agents are professionally trained in communication, compliance, and customer empathy — ensuring every interaction reflects your brand positively.",
-      icon: <Users className="w-6 h-6 text-gray-700" strokeWidth={1.5} />,
+      icon: (
+        <Users
+          className="w-6 h-6 text-gray-700"
+          strokeWidth={1.5}
+          style={{ stroke: "url(#icon-gradient)" }}
+        />
+      ),
     },
     {
       label: "VALUE",
       title: "Cost-Effective Without Compromise",
       description:
         "We offer enterprise-level service quality at competitive pricing, helping businesses scale efficiently without sacrificing performance.",
-      icon: <DollarSign className="w-6 h-6 text-gray-700" strokeWidth={1.5} />,
+      icon: (
+        <DollarSign
+          className="w-6 h-6 text-gray-700"
+          strokeWidth={1.5}
+          style={{ stroke: "blue" }}
+        />
+      ),
     },
     {
       label: "GLOBAL",
       title: "Global Coverage, Local Understanding",
       description:
         "With experience serving multiple regions and time zones, we provide 24/7 support while understanding local customer expectations.",
-      icon: <Globe className="w-6 h-6 text-gray-700" strokeWidth={1.5} />,
+      icon: (
+        <Globe
+          className="w-6 h-6 text-gray-700"
+          strokeWidth={1.5}
+          style={{ stroke: "url(#icon-gradient)" }}
+        />
+      ),
     },
     {
       label: "SECURITY",
       title: "Secure & Process-Driven Operations",
       description:
         "Data privacy, compliance, and structured workflows are built into everything we do — giving clients complete peace of mind.",
-      icon: <Shield className="w-6 h-6 text-gray-700" strokeWidth={1.5} />,
+      icon: (
+        <Shield
+          className="w-6 h-6 text-gray-700"
+          strokeWidth={1.5}
+          style={{ stroke: "url(#icon-gradient)" }}
+        />
+      ),
     },
   ];
 
@@ -119,7 +147,7 @@ const WhyHKNexus = () => {
           {cards.map((card, index) => (
             <div
               key={index}
-              className={`bg-white rounded-xl p-8 shadow-sm flex flex-col hover:shadow-md transition-shadow duration-300 ${
+              className={`bg-white rounded-xl p-8 shadow-sm flex flex-col hover:shadow-xl transition-shadow duration-300 ${
                 index === 3 || index === 4 ? "md:col-span-1 lg:col-span-1" : ""
               }`}
             >

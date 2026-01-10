@@ -40,7 +40,7 @@ const AccordionItem = ({
   return (
     <div
       className={`rounded-2xl overflow-hidden mb-4 transition-colors duration-300 ${
-        isOpen ? "bg-gray-50" : "bg-gray-50/80 hover:bg-gray-50"
+        isOpen ? "bg-gray-50 shadow-xl" : "bg-gray-50/80 hover:bg-gray-50"
       }`}
     >
       {/* Clickable Header */}

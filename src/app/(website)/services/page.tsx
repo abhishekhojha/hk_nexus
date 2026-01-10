@@ -14,6 +14,7 @@ import {
   digitalTransformationOverview,
   digitalTransformationServices,
 } from "./data";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // --- Animation Variants ---
 const fadeInUp = {
@@ -504,6 +505,9 @@ export default function ServicesPage() {
           </div>
         </motion.div>
       </section>
+
+      {/* Scroll to Top Button */}
+            <ScrollToTop />
     </main>
   );
 }

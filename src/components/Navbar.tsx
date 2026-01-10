@@ -68,15 +68,24 @@ export default function Navbar() {
             {/* Desktop Menu */}
             <div className="hidden md:block">
               <div className="flex items-baseline space-x-8">
-                {navLinks.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-semibold transition-colors"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+                {navLinks.map((item) => {
+                  const isActive =
+                    pathname === item.href ||
+                    (item.href !== "/" && pathname.startsWith(item.href));
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`px-3 py-2 rounded-md text-sm font-semibold transition-colors ${
+                        isActive
+                          ? "text-primary"
+                          : "text-gray-600 hover:text-primary"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
@@ -143,21 +152,36 @@ export default function Navbar() {
           </div>
 
           <div className="flex-1 overflow-y-auto py-6 px-6 flex flex-col gap-2">
-            {navLinks.map((item, index) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`group flex items-center justify-between p-4 rounded-xl text-lg font-semibold text-gray-700 hover:bg-gray-50 hover:text-primary transition-all duration-500 ease-out ${
-                  isMobileMenuOpen
-                    ? "translate-x-0 opacity-100"
-                    : "translate-x-8 opacity-0"
-                }`}
-                style={{ transitionDelay: `${100 + index * 50}ms` }}
-              >
-                {item.name}
-                <ChevronRight className="w-5 h-5 text-gray-300 group-hover:text-primary transition-colors" />
-              </Link>
-            ))}
+            {navLinks.map((item, index) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(item.href));
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`group flex items-center justify-between p-4 rounded-xl text-lg font-semibold hover:bg-gray-50 transition-all duration-500 ease-out ${
+                    isActive
+                      ? "text-primary"
+                      : "text-gray-700 hover:text-primary"
+                  } ${
+                    isMobileMenuOpen
+                      ? "translate-x-0 opacity-100"
+                      : "translate-x-8 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${100 + index * 50}ms` }}
+                >
+                  {item.name}
+                  <ChevronRight
+                    className={`w-5 h-5 transition-colors ${
+                      isActive
+                        ? "text-primary"
+                        : "text-gray-300 group-hover:text-primary"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
 
             <hr className="my-4 border-gray-100" />
 

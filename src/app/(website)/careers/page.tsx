@@ -33,6 +33,33 @@ interface LocationData {
   cities: string[];
 }
 
+// Static location data - locked to India
+const locationData = {
+  country: "India",
+  states: [
+    {
+      name: "Madhya Pradesh",
+      cities: ["Bhopal", "Indore", "Jabalpur"],
+    },
+    {
+      name: "Maharashtra",
+      cities: ["Mumbai", "Pune", "Nagpur"],
+    },
+    {
+      name: "Karnataka",
+      cities: ["Bangalore", "Mysore", "Hubli"],
+    },
+    {
+      name: "Delhi",
+      cities: ["New Delhi", "Noida", "Gurgaon"],
+    },
+    {
+      name: "Tamil Nadu",
+      cities: ["Chennai", "Coimbatore", "Madurai"],
+    },
+  ],
+};
+
 export default function CareersPage() {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -50,17 +77,11 @@ export default function CareersPage() {
   // Job openings state
   const [jobOpenings, setJobOpenings] = useState<JobOpening[]>([]);
   const [filteredJobs, setFilteredJobs] = useState<JobOpening[]>([]);
-  const [locations, setLocations] = useState<LocationData>({
-    countries: [],
-    states: [],
-    cities: [],
-  });
   const [loading, setLoading] = useState(true);
 
-  // Filter states
-  const [selectedCountry, setSelectedCountry] = useState("All Countries");
-  const [selectedState, setSelectedState] = useState("All States");
-  const [selectedCity, setSelectedCity] = useState("All Cities");
+  // Filter states - default to Madhya Pradesh and Bhopal
+  const [selectedState, setSelectedState] = useState("Madhya Pradesh");
+  const [selectedCity, setSelectedCity] = useState("Bhopal");
 
   // Fetch job openings on mount
   useEffect(() => {
@@ -70,7 +91,7 @@ export default function CareersPage() {
   // Filter jobs when selection changes
   useEffect(() => {
     filterJobs();
-  }, [selectedCountry, selectedState, selectedCity, jobOpenings]);
+  }, [selectedState, selectedCity, jobOpenings]);
 
   const fetchJobOpenings = async () => {
     try {
@@ -78,7 +99,6 @@ export default function CareersPage() {
       if (res.ok) {
         const data = await res.json();
         setJobOpenings(data.jobOpenings);
-        setLocations(data.locations);
         setFilteredJobs(data.jobOpenings);
       }
     } catch (error) {
@@ -92,9 +112,9 @@ export default function CareersPage() {
   const filterJobs = () => {
     let filtered = [...jobOpenings];
 
-    if (selectedCountry !== "All Countries") {
-      filtered = filtered.filter((job) => job.country === selectedCountry);
-    }
+    // Always filter by India (locked country)
+    filtered = filtered.filter((job) => job.country === locationData.country);
+
     if (selectedState !== "All States") {
       filtered = filtered.filter((job) => job.state === selectedState);
     }
@@ -105,39 +125,31 @@ export default function CareersPage() {
     setFilteredJobs(filtered);
   };
 
-  // Get available states based on selected country
+  // Get available states from static location data
   const getAvailableStates = () => {
-    if (selectedCountry === "All Countries") {
-      return locations.states;
-    }
-    const statesInCountry = jobOpenings
-      .filter((job) => job.country === selectedCountry)
-      .map((job) => job.state);
-    return [...new Set(statesInCountry)];
+    return locationData.states.map((state) => state.name);
   };
 
-  // Get available cities based on selected state
+  // Get available cities based on selected state from static location data
   const getAvailableCities = () => {
     if (selectedState === "All States") {
-      return locations.cities;
+      // Return all cities from all states
+      return locationData.states.flatMap((state) => state.cities);
     }
-    const citiesInState = jobOpenings
-      .filter((job) => job.state === selectedState)
-      .map((job) => job.city);
-    return [...new Set(citiesInState)];
-  };
-
-  const handleCountryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const country = e.target.value;
-    setSelectedCountry(country);
-    setSelectedState("All States");
-    setSelectedCity("All Cities");
+    const stateData = locationData.states.find((s) => s.name === selectedState);
+    return stateData ? stateData.cities : [];
   };
 
   const handleStateChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const state = e.target.value;
     setSelectedState(state);
-    setSelectedCity("All Cities");
+    // Set first city of the state as default, or "All Cities" if selecting all states
+    if (state === "All States") {
+      setSelectedCity("All Cities");
+    } else {
+      const stateData = locationData.states.find((s) => s.name === state);
+      setSelectedCity(stateData?.cities[0] || "All Cities");
+    }
   };
 
   const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -332,21 +344,6 @@ export default function CareersPage() {
 
             {/* Overlay (Darken) */}
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
-
-            {/* Play Button */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <div className="w-20 h-20 rounded-full border-[3px] border-white flex items-center justify-center backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 shadow-lg">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="white"
-                  className="ml-1"
-                >
-                  <path d="M5 3l14 9-14 9V3z" />
-                </svg>
-              </div>
-            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -419,23 +416,14 @@ export default function CareersPage() {
           {/* Location Filters */}
           <div className="mb-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
-              {/* Country Dropdown */}
+              {/* Country Display - Locked to India */}
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 block">
                   Country
                 </label>
-                <select
-                  value={selectedCountry}
-                  onChange={handleCountryChange}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
-                >
-                  <option value="All Countries">All Countries</option>
-                  {locations.countries.map((country) => (
-                    <option key={country} value={country}>
-                      {country}
-                    </option>
-                  ))}
-                </select>
+                <div className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-700 font-medium">
+                  🇮🇳 India
+                </div>
               </div>
 
               {/* State Dropdown */}
@@ -560,34 +548,23 @@ export default function CareersPage() {
               <div className="max-w-2xl mx-auto">
                 <MapPin className="w-16 h-16 text-gray-300 mx-auto mb-6" />
                 <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
-                  {jobOpenings.length === 0
-                    ? "No Openings Available"
-                    : `No Openings in ${
-                        selectedCity !== "All Cities"
-                          ? selectedCity
-                          : selectedState !== "All States"
-                          ? selectedState
-                          : selectedCountry
-                      }`}
+                  Openings Coming Soon to{" "}
+                  {selectedCity !== "All Cities" ? selectedCity : selectedState}
                 </h3>
                 <p className="text-gray-500 text-lg mb-8">
-                  {jobOpenings.length === 0
-                    ? "Check back soon for new opportunities!"
-                    : "Try adjusting your filters or check back soon for new opportunities in your area."}
+                  We're expanding! Check back soon for opportunities in your
+                  area.
                 </p>
-                {jobOpenings.length > 0 && (
-                  <button
-                    onClick={() => {
-                      setSelectedCountry("All Countries");
-                      setSelectedState("All States");
-                      setSelectedCity("All Cities");
-                    }}
-                    className="bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity shadow-lg inline-flex items-center gap-2"
-                  >
-                    View All Openings
-                    <ArrowRight className="w-5 h-5" />
-                  </button>
-                )}
+                <button
+                  onClick={() => {
+                    setSelectedState("Madhya Pradesh");
+                    setSelectedCity("Bhopal");
+                  }}
+                  className="bg-gradient-to-r from-secondary to-primary text-white px-8 py-4 rounded-full text-base font-semibold hover:opacity-90 transition-opacity shadow-lg inline-flex items-center gap-2"
+                >
+                  View Current Openings
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             </div>
           )}
