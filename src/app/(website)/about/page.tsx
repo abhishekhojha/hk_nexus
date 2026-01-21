@@ -16,6 +16,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import ScrollToTop from "@/components/ScrollToTop";
+import ClientLogosMarquee from "@/components/ClientLogosMarquee";
 
 export default function AboutPage() {
   const values = [
@@ -238,43 +239,7 @@ export default function AboutPage() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-14 xl:py-16 px-6 xl:px-12">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-3xl xl:text-3xl font-bold text-gray-900 mb-4">
-                What Our Clients Say
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Don't just take our word for it. Here is what our partners have
-                to say.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 relative hover:shadow-xl transition-shadow duration-300"
-                >
-                  <div className="absolute -top-4 left-8 bg-gradient-to-r from-primary to-secondary text-white p-2 rounded-lg shadow-md">
-                    <Star className="w-6 h-6 fill-current" />
-                  </div>
-                  <p className="text-gray-600 italic mb-6 pt-4 leading-relaxed">
-                    "{testimonial.quote}"
-                  </p>
-                  <div>
-                    <h4 className="font-bold text-gray-900">
-                      {testimonial.author}
-                    </h4>
-                    <p className="text-sm text-secondary font-medium">
-                      {testimonial.role}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <ClientLogosMarquee />
 
         {/* Team Section - Disabled */}
         {false && (

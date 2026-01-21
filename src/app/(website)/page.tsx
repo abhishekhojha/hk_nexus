@@ -7,7 +7,7 @@ import BlogSection from "@/components/BlogSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import QuickConnectButton from "@/components/QuickConnectButton";
 import ScrollToTop from "@/components/ScrollToTop";
-import ClientLogosMarquee from "@/components/ClientLogosMarquee";
+
 import { Users, Globe, Briefcase, Building2 } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
 
@@ -68,7 +68,7 @@ export default function Home() {
         <ServicesSection />
         <WhyHKNexus />
         <ClientTestimonials />
-        <ClientLogosMarquee />
+
         <NewsletterSection />
       </main>
 
