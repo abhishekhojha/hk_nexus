@@ -13,7 +13,7 @@ import {
 import { toast } from "sonner";
 import { benefits, lifeAtCompany } from "./data";
 import ScrollToTop from "@/components/ScrollToTop";
-w
+
 interface JobOpening {
   _id: string;
   title: string;
