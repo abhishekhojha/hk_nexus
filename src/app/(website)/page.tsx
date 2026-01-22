@@ -10,6 +10,7 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 import { Users, Globe, Briefcase, Building2 } from "lucide-react";
 import AnimatedCounter from "@/components/AnimatedCounter";
+import ClientLogosMarquee from "@/components/ClientLogosMarquee";
 
 export default function Home() {
   const stats = [
@@ -68,7 +69,7 @@ export default function Home() {
         <ServicesSection />
         <WhyHKNexus />
         <ClientTestimonials />
-
+        <ClientLogosMarquee />
         <NewsletterSection />
       </main>
 

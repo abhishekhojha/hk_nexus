@@ -34,6 +34,14 @@ interface LocationData {
   cities: string[];
 }
 
+// Default hardcoded positions that should always appear
+const defaultPositions = [
+  "Customer Service executive (CSA)",
+  "Team Leader (T.L.)",
+  "Quality Auditor (Q.A.)",
+  "Information Technology (I.T.)",
+];
+
 // Static location data - locked to India
 const locationData = {
   country: "India",
@@ -715,11 +723,22 @@ export default function CareersPage() {
                           className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#594ad2] focus:border-transparent outline-none transition-all bg-white"
                         >
                           <option value="">Select a position</option>
-                          {jobOpenings.map((job) => (
-                            <option key={job._id} value={job.title}>
-                              {job.title}
+                          {/* Default hardcoded positions */}
+                          {defaultPositions.map((position) => (
+                            <option key={position} value={position}>
+                              {position}
                             </option>
                           ))}
+                          {/* API positions, excluding duplicates */}
+                          {jobOpenings
+                            .filter(
+                              (job) => !defaultPositions.includes(job.title),
+                            )
+                            .map((job) => (
+                              <option key={job._id} value={job.title}>
+                                {job.title}
+                              </option>
+                            ))}
                         </select>
                       </div>
                     </div>

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
-// Client data with testimonials
-const clients = [
+// Client data with testimonials - exported for use in other components
+export const clients = [
   {
     name: "Rana Arts",
     logo: "/images/testimonials/rana-arts.png",
@@ -14,7 +14,7 @@ const clients = [
   },
   {
     name: "Biznweb",
-    logo: "/images/testimonials/biznweb.png",
+    logo: "/images/testimonials/biznweb.jpeg",
     person: "Sikander Khan",
     designation: "Business & Digital Growth Partner",
     testimonial:
@@ -28,13 +28,17 @@ const clients = [
     testimonial:
       "HK Nexus Global played a critical role in strengthening our customer engagement and digital presence. Their expertise in digital marketing combined with seamless voice, chat, email, and technical support created a reliable support ecosystem for our customers. Their agents communicate with empathy, professionalism, and technical clarity — exactly what modern customers expect. HK Nexus Global helped us deliver a better customer experience, every single day.",
   },
+  {
+    name: "SPS",
+    logo: "/images/testimonials/sps.jpeg",
+    person: "Scholar Public School",
+    designation: "Education Partner",
+    testimonial:
+      "HK Nexus Global has been a valuable partner in enhancing our parent and student communication services. Their call center support has streamlined admission inquiries, fee-related assistance, and daily school coordination with efficiency and care. The team communicates with professionalism, clarity, and empathy, ensuring every query is handled smoothly. With HK Nexus Global's support, we are able to deliver timely, reliable, and improved service experiences to our school community every day.",
+  },
 ];
 
 const ClientLogosMarquee = () => {
-  const [hoveredClient, setHoveredClient] = useState<
-    (typeof clients)[0] | null
-  >(null);
-
   // Duplicate the array for seamless infinite scroll
   const duplicatedClients = [...clients, ...clients];
 
@@ -53,15 +57,13 @@ const ClientLogosMarquee = () => {
         <div className="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none" />
 
         {/* Scrolling Track */}
-        <div className={`flex ${hoveredClient ? "" : "animate-marquee"}`}>
+        <div className="flex animate-marquee">
           {duplicatedClients.map((client, index) => (
             <div
               key={index}
-              className="flex-shrink-0 mx-8 flex items-center justify-center relative"
-              onMouseEnter={() => setHoveredClient(client)}
-              onMouseLeave={() => setHoveredClient(null)}
+              className="flex-shrink-0 mx-8 flex items-center justify-center"
             >
-              <div className="w-48 h-20 bg-white rounded-xl border border-gray-200 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 p-4 cursor-pointer group">
+              <div className="w-48 h-20 bg-white rounded-xl border border-gray-200 flex items-center justify-center shadow-sm hover:shadow-lg hover:border-primary/30 transition-all duration-300 p-4 group">
                 {client.logo && (
                   <img
                     src={client.logo}
@@ -74,46 +76,6 @@ const ClientLogosMarquee = () => {
           ))}
         </div>
       </div>
-
-      {/* Hover Tooltip/Card */}
-      {hoveredClient && (
-        <div className="max-w-4xl mx-auto mt-8 px-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
-          <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 relative overflow-hidden">
-            {/* Gradient accent */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary" />
-
-            <div className="flex flex-col md:flex-row gap-6 items-start">
-              {/* Logo */}
-              <div className="flex-shrink-0 w-24 h-24 bg-gray-50 rounded-xl flex items-center justify-center p-4 border border-gray-100">
-                <img
-                  src={hoveredClient.logo}
-                  alt={hoveredClient.name}
-                  className="max-h-16 max-w-full object-contain"
-                />
-              </div>
-
-              {/* Content */}
-              <div className="flex-grow">
-                <div className="mb-4">
-                  <h4 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
-                    {hoveredClient.name}
-                  </h4>
-                  <p className="text-gray-900 font-semibold">
-                    {hoveredClient.person}
-                  </p>
-                  <p className="text-gray-500 text-sm">
-                    {hoveredClient.designation}
-                  </p>
-                </div>
-
-                <p className="text-gray-600 leading-relaxed text-sm">
-                  "{hoveredClient.testimonial}"
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* CSS for Marquee Animation */}
       <style jsx>{`

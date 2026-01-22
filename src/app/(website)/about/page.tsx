@@ -17,6 +17,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ScrollToTop from "@/components/ScrollToTop";
 import ClientLogosMarquee from "@/components/ClientLogosMarquee";
+import TestimonialsSlider from "@/components/TestimonialsSlider";
 
 export default function AboutPage() {
   const values = [
@@ -240,6 +241,7 @@ export default function AboutPage() {
 
         {/* Testimonials Section */}
         <ClientLogosMarquee />
+        <TestimonialsSlider />
 
         {/* Team Section - Disabled */}
         {false && (

@@ -78,14 +78,14 @@ export default function ContactPage() {
     {
       name: "Sales Department",
       description: "For inquiries about our services and pricing.",
-      email: "sales@hknexus.com",
+      email: "sales@hknexusglobal.com",
       phone: "+1 (800) 123-4567",
       icon: <Briefcase className="w-6 h-6" />,
     },
     {
       name: "Technical Support",
       description: "Get help with technical issues and troubleshooting.",
-      email: "support@hknexus.com",
+      email: "support@hknexusglobal.com",
       phone: "+1 (800) 123-4568",
       icon: <HelpCircle className="w-6 h-6" />,
     },
